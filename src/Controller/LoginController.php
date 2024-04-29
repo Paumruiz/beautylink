@@ -14,10 +14,8 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
-        // obtener el error de inicio de sesión (si lo hay)
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // obtener el último nombre de usuario ingresado (si lo hay)
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $form = $this->createForm(LoginFormType::class);
@@ -32,6 +30,5 @@ class LoginController extends AbstractController
     #[Route('/logout', name: 'app_logout')]
     public function logout()
     {
-        // controlador vacío ya que la parte de seguridad se maneja automáticamente
     }
 }
