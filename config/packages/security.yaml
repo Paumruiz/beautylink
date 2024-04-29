@@ -17,6 +17,11 @@ security:
       entity:
         class: App\Entity\Clientes
         property: email_cliente
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -24,6 +29,9 @@ security:
     main:
       lazy: true
       provider: centro_provider # O cliente_provider según el tipo de usuario
+        form_login:
+                default_target_path: /empleados  # Ruta a la que se redirige después de iniciar sesión correctamente
+                always_use_default_target_path: true  # Siempre redirigir al destino predeterminado después del inicio de sesión, incluso si se accedió a una página protegida
     cliente:
       lazy: true
       provider: cliente_provider # Usar este firewall para los clientes

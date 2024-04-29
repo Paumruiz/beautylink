@@ -7,8 +7,11 @@
 
     {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
+     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email_centro) }}
+        {{ form_row(registrationForm.nombre_centro) }}
+        {{ form_row(registrationForm.direccion_centro) }}
+        {{ form_row(registrationForm.telefono_centro) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}

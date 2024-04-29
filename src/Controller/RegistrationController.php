@@ -13,6 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
+    #[Route('/test', name: 'test')]
+    public function main()
+    {
+        return $this->render(view: 'base.html.twig');
+    }
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -29,11 +35,16 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Set other centro properties
+            $user->setNombreCentro($form->get('nombre_centro')->getData());
+            $user->setDireccionCentro($form->get('direccion_centro')->getData());
+            $user->setTelefonoCentro($form->get('telefono_centro')->getData());
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('_preview_error');
+            return $this->redirectToRoute(route: 'test');
         }
 
         return $this->render('registration/register.html.twig', [

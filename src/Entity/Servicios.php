@@ -27,10 +27,6 @@ class Servicios
     #[ORM\Column]
     private ?float $precio_servicio = null;
 
-    #[ORM\ManyToOne(targetEntity: Centros::class, inversedBy: 'servicios_centro')]
-    #[ORM\JoinColumn(name: "id_centro", referencedColumnName: "id_centro", nullable: false)]
-    private ?Centros $id_centro = null;
-
     #[ORM\OneToMany(mappedBy: 'id_servicio', targetEntity: Citas::class)]
     private Collection $servicio_cita;
 
@@ -88,18 +84,6 @@ class Servicios
     public function setPrecioServicio(float $precio_servicio): static
     {
         $this->precio_servicio = $precio_servicio;
-
-        return $this;
-    }
-
-    public function getServiciosCentro(): ?Centros
-    {
-        return $this->id_centro;
-    }
-
-    public function setServiciosCentro(?Centros $id_centro): static
-    {
-        $this->id_centro = $id_centro;
 
         return $this;
     }

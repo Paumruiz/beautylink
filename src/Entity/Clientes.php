@@ -39,6 +39,9 @@ class Clientes
     #[ORM\OneToMany(mappedBy: 'id_cliente', targetEntity: Citas::class)]
     private Collection $cliente_cita;
 
+    #[ORM\Column]
+    private array $roles = [];
+
     public function __construct()
     {
         $this->cliente_cita = new ArrayCollection();
@@ -151,14 +154,28 @@ class Clientes
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email_cliente;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_CLIENTE';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     /**

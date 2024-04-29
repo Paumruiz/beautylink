@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CentrosRepository::class)]
 #[UniqueEntity(fields: ['email_centro'], message: 'There is already an account with this email_centro')]
-class Centros
+class Centros implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -40,18 +40,17 @@ class Centros
     #[ORM\OneToMany(mappedBy: 'id_centro', targetEntity: Empleados::class)]
     private Collection $empleados_centro;
 
-    #[ORM\OneToMany(mappedBy: 'id_centro', targetEntity: Servicios::class)]
-    private Collection $servicios_centro;
-
     #[ORM\OneToMany(mappedBy: 'id_centro', targetEntity: Citas::class)]
     private Collection $centro_cita;
+
+    #[ORM\Column]
+    private array $roles = [];
 
 
     public function __construct()
     {
         $this->clientes_centro = new ArrayCollection();
         $this->empleados_centro = new ArrayCollection();
-        $this->servicios_centro = new ArrayCollection();
         $this->centro_cita = new ArrayCollection();
     }
 
@@ -108,17 +107,6 @@ class Centros
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password_centro;
-    }
-
-    public function setPassword(string $password_centro): static
-    {
-        $this->password_centro = $password_centro;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Clientes>
@@ -180,35 +168,7 @@ class Centros
         return $this;
     }
 
-    /**
-     * @return Collection<int, Servicios>
-     */
-    public function getServiciosCentro(): Collection
-    {
-        return $this->servicios_centro;
-    }
 
-    public function addServiciosCentro(Servicios $serviciosCentro): static
-    {
-        if (!$this->servicios_centro->contains($serviciosCentro)) {
-            $this->servicios_centro->add($serviciosCentro);
-            $serviciosCentro->setServiciosCentro($this);
-        }
-
-        return $this;
-    }
-
-    public function removeServiciosCentro(Servicios $serviciosCentro): static
-    {
-        if ($this->servicios_centro->removeElement($serviciosCentro)) {
-            // set the owning side to null (unless already changed)
-            if ($serviciosCentro->getServiciosCentro() === $this) {
-                $serviciosCentro->setServiciosCentro(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Citas>
@@ -243,6 +203,40 @@ class Centros
     public function getUserIdentifier(): string
     {
         return (string) $this->email_centro;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_CENTRO';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password_centro;
+    }
+
+    public function setPassword(string $password_centro): static
+    {
+        $this->password_centro = $password_centro;
+
+        return $this;
     }
 
     /**
