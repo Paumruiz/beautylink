@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ServiciosController extends AbstractController
 {
-    #[Route('/servicios', name: 'app_servicios')]
+    #[Route(' ', name: 'app_servicios')]
     public function index(EntityManagerInterface $entityManager): JsonResponse
     {
         $serviciosRepository = $entityManager->getRepository(Servicios::class);

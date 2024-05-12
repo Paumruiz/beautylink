@@ -153,4 +153,75 @@ class CitasController extends AbstractController
 
         return new JsonResponse(['status' => 'Cita insertada correctamente'], Response::HTTP_CREATED);
     }
+
+    #[Route('/citas/{id}', name: 'app_actualizar_cita', methods: ['PATCH'])]
+    public function updateCita(Request $request, EntityManagerInterface $entityManager, $id): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $citaData = $data['cita'];
+
+        // Recuperar la cita existente por su ID
+        $citaEntity = $entityManager->getRepository(Citas::class)->find($id);
+
+        if (!$citaEntity) {
+            return new JsonResponse(['error' => 'Cita no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Actualizar las propiedades de la cita con los nuevos datos
+        if (isset($citaData['servicio'])) {
+            $servicio = $entityManager->getRepository(Servicios::class)->find($citaData['servicio']);
+            $citaEntity->setServicioCita($servicio);
+        }
+
+        if (isset($citaData['cliente'])) {
+            $cliente = $entityManager->getRepository(Clientes::class)->find($citaData['cliente']);
+            $citaEntity->setClienteCita($cliente);
+        }
+
+        if (isset($citaData['empleado'])) {
+            $empleado = $entityManager->getRepository(Empleados::class)->find($citaData['empleado']);
+            $citaEntity->setEmpleadoCita($empleado);
+        }
+
+        if (isset($citaData['centro'])) {
+            $centro = $entityManager->getRepository(Centros::class)->find($citaData['centro']);
+            $citaEntity->setCentroCita($centro);
+        }
+
+        if (isset($citaData['fecha'])) {
+            $citaEntity->setFechaCita(new \DateTime($citaData['fecha']));
+        }
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'Cita actualizada correctamente'], Response::HTTP_OK);
+    }
+
+    #[Route('/citas/{id}', name: 'app_eliminar_cita', methods: ['DELETE'])]
+    public function deleteCita(EntityManagerInterface $entityManager, $id): JsonResponse
+    {
+        // Recuperar la cita existente por su ID
+        $citaEntity = $entityManager->getRepository(Citas::class)->find($id);
+
+        if (!$citaEntity) {
+            return new JsonResponse(['error' => 'Cita no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Eliminar la cita
+        $entityManager->remove($citaEntity);
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'Cita eliminada correctamente'], Response::HTTP_OK);
+    }
 }
+
+/* {
+    "cita": {
+        "servicio": 1,
+        "cliente": 1,
+        "empleado": 1,
+        "centro": 1,
+        "fecha": "2024-01-01 00:00:00"
+    }
+} */

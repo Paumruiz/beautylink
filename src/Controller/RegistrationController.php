@@ -28,13 +28,14 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
+            /* $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+            ); */
 
+            $user->setPassword($form->get('plainPassword')->getData());
             // Set other centro properties
             $user->setNombreCentro($form->get('nombre_centro')->getData());
             $user->setDireccionCentro($form->get('direccion_centro')->getData());

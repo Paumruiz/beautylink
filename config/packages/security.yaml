@@ -2,11 +2,11 @@ security:
   # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
-  # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     App\Entity\Centro:
-        algorithm: auto
+      algorithm: auto
     App\Entity\Cliente:
-        algorithm: auto
+      algorithm: auto
   providers:
     # used to reload user from session & other features (e.g. switch_user)
     centro_provider:
@@ -29,9 +29,15 @@ security:
     main:
       lazy: true
       provider: centro_provider # O cliente_provider según el tipo de usuario
-        form_login:
-                default_target_path: /empleados  # Ruta a la que se redirige después de iniciar sesión correctamente
-                always_use_default_target_path: true  # Siempre redirigir al destino predeterminado después del inicio de sesión, incluso si se accedió a una página protegida
+      form_login:
+        login_path: app_login
+        check_path: app_login
+        default_target_path: /empleados # Ruta a la que se redirige después de iniciar sesión correctamente
+        always_use_default_target_path: true
+        username_parameter: email_centro
+      logout:
+        path: app_logout
+        target: /
     cliente:
       lazy: true
       provider: cliente_provider # Usar este firewall para los clientes

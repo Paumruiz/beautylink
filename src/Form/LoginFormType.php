@@ -13,15 +13,12 @@ class LoginFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', TextType::class)
-            ->add('password', PasswordType::class);
+            ->add('email_centro', TextType::class)
+            ->add('password_centro', PasswordType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            // Definir el nombre de la clase de la entidad (si es diferente de User)
-            //'data_class' => User::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }
