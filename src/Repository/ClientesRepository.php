@@ -24,6 +24,24 @@ class ClientesRepository extends ServiceEntityRepository implements PasswordUpgr
         parent::__construct($registry, Clientes::class);
     }
 
+    public function save(Clientes $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Clientes $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function upgradePassword(PasswordAuthenticatedUserInterface $cliente, string $newHashedPassword): void
     {
         if (!$cliente instanceof Clientes) {

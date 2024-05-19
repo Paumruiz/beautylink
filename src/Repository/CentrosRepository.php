@@ -53,6 +53,14 @@ class CentrosRepository extends ServiceEntityRepository implements PasswordUpgra
         }
     }
 
+    public function findAllCentros()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nombre_centro', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Centros[] Returns an array of Centros objects
     //     */

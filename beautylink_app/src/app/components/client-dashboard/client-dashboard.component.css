@@ -1,0 +1,20 @@
+.table-container {
+    display: flex;
+    margin: 300px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 80%; /* O el ancho que prefieras */
+    margin: auto; /* Centra la tabla horizontalmente */
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }

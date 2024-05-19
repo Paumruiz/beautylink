@@ -1,0 +1,34 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email_cliente">Email:</label>
+        <input formControlName="email_cliente" type="text" id="email_cliente">
+      </div>
+    
+    <div>
+      <label for="nombre_cliente">Nombre:</label>
+      <input formControlName="nombre_cliente" type="text" id="nombre_cliente">
+    </div>
+  
+    <div>
+      <label for="apellidos_cliente">Apellidos:</label>
+      <input formControlName="apellidos_cliente" type="text" id="apellidos_cliente">
+    </div>
+  
+    <div>
+      <label for="telefono_cliente">Teléfono:</label>
+      <input formControlName="telefono_cliente" type="text" id="telefono_cliente">
+    </div>
+    <div>
+        <label for="id_centro">Centro:</label>
+        <select formControlName="id_centro" id="id_centro">
+            <option *ngFor="let centro of centros" [value]="centro.id">{{ centro.nombre }}</option>
+        </select>
+    </div>
+  
+    <div>
+      <label for="password_cliente">Contraseña:</label>
+      <input formControlName="password_cliente" type="password" id="password_cliente">
+    </div>
+  
+    <button type="submit">Registrar</button>
+  </form>

@@ -22,12 +22,12 @@ class ClientesController extends AbstractController
         foreach ($clientes as $cliente) {
             $data[] = [
                 'id' => $cliente->getId(),
-                'centro' => $cliente->getEmpleadosCentro()->getNombreCentro(),
-                'nombre' => $cliente->getNombreEmpleado(),
-                'apellidos' => $cliente->getApellidosEmpleado(),
-                'rol' => $cliente->getRolEmpleado(),
-                'horario_inicio' => $cliente->getHorarioInicio(),
-                'horario_fin' => $cliente->getHorarioFin(),
+                'centro' => $cliente->getIdCentroCliente()->getNombreCentro(),
+                'nombre' => $cliente->getNombreCliente(),
+                'apellidos' => $cliente->getApellidosCliente(),
+                'email' => $cliente->getEmailCliente(),
+                'telefono' => $cliente->getTelefonoCliente(),
+                'password' => $cliente->getPassword(),
             ];
         }
 

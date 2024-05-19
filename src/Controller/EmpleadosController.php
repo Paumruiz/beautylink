@@ -38,6 +38,30 @@ class EmpleadosController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
 
+    #[Route('/empleados/{centroId}', name: 'app_empleados_centro', methods: ['GET'])]
+    public function listEmpleadosPorCentro(int $centroId, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $empleadosRepository = $entityManager->getRepository(Empleados::class);
+
+        // Obtener los empleados por el ID del centro
+        $empleados = $empleadosRepository->findBy(['id_centro' => $centroId]);
+
+        $data = [];
+        foreach ($empleados as $empleado) {
+            $data[] = [
+                'id' => $empleado->getId(),
+                'centro' => $empleado->getEmpleadosCentro()->getNombreCentro(), // Asumiendo que 'getCentro()' es el método para obtener el centro asociado al empleado
+                'nombre' => $empleado->getNombreEmpleado(),
+                'apellidos' => $empleado->getApellidosEmpleado(),
+                'rol' => $empleado->getRolEmpleado(),
+                'horario_inicio' => $empleado->getHorarioInicio(),
+                'horario_fin' => $empleado->getHorarioFin(),
+            ];
+        }
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
     #[Route('/empleados', name: 'app_empleados_add', methods: ['POST'])]
     public function add(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {

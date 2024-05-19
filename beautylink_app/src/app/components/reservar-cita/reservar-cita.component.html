@@ -1,0 +1,16 @@
+<form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="servicio">Servicio:</label>
+        <select formControlName="servicio" id="servicio">
+            <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
+        </select>
+    </div>
+    <div>
+        <label for="empleado">Empleado:</label>
+        <select formControlName="empleado" id="empleado">
+            <option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre }}</option>
+        </select>
+    </div>
+    <input type="text" formControlName="fecha" placeholder="Fecha de la Cita">
+    <button type="submit">Insertar Cita</button>
+  </form>

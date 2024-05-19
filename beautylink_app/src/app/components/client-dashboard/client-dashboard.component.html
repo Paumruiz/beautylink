@@ -1,0 +1,44 @@
+<app-sidebar-header></app-sidebar-header>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Servicio</th>
+        <th>Cliente</th>
+        <th>Empleado</th>
+        <th>Centro</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citas">
+        <td>{{ cita.id }}</td>
+        <td>{{ cita.servicio }}</td>
+        <td>{{ cita.cliente }}</td>
+        <td>{{ cita.empleado }}</td>
+        <td>{{ cita.centro }}</td>
+        <td>{{ cita.fecha }}</td>
+        <td>
+         <button (click)="editarCita(cita)">Actualizar</button>
+         <button (click)="eliminarCita(cita.id)">Eliminar</button>
+       
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="editMode">
+  <h3>Editando Cita</h3>
+  <form [formGroup]="citaForm" (ngSubmit)="actualizarCita()">
+    <label for="servicio">Servicio:</label>
+    <input type="text" formControlName="servicio">
+    <label for="empleado">Empleado:</label>
+    <input type="text" formControlName="empleado">
+    <label for="fecha">Fecha:</label>
+    <input type="text" formControlName="fecha">
+    <button type="submit">Actualizar</button>
+  </form>
+</div>

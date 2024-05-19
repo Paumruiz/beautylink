@@ -11,28 +11,28 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\LoginFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
-class LoginController extends AbstractController
+/* class LoginController extends AbstractController
 {
-    #[Route('/login', name: 'app_login')]
+    #[Route('/login_centros', name: 'app_login')]
     public function login(Request $request, AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager): Response
     {
 
 
         $form = $this->createForm(LoginFormType::class);
-        var_dump($request->request->all());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $email = $form->get('email_centro')->getData();
-            $password = $form->get('password_centro')->getData();
-
+            $formData = $form->getData();
+            $email = $formData['email_centro'];
+            $password = $formData['password_centro'];
 
             $userRepository = $entityManager->getRepository(Centros::class);
-            $user = $userRepository->findOneByEmail($email);
+            $user = $userRepository->findOneBy(['email_centro' => $email]);
 
 
             if ($user && $user->getPassword() === $password) {
@@ -42,15 +42,12 @@ class LoginController extends AbstractController
                 } elseif ($user instanceof Clientes) {
                     $user->setRoles(['ROLE_CLIENTE']);
                 }
-                var_dump($user);
-
-
 
                 return $this->redirectToRoute('app_empleados');
             }
 
 
-            $error = 'Correo electrónico o contraseña incorrectos.';
+            return $this->redirectToRoute('app_login');
         } else {
 
             $error = $authenticationUtils->getLastAuthenticationError();
@@ -68,5 +65,48 @@ class LoginController extends AbstractController
     #[Route('/logout', name: 'app_logout')]
     public function logout()
     {
+    }
+}
+ */
+
+
+class LoginController extends AbstractController
+{
+    #[Route('/login_centros', name: 'app_login', methods: ['POST'])]
+    public function login(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // Decodificar el JSON de la solicitud
+        $data = json_decode($request->getContent(), true);
+
+        // Validar los datos recibidos
+        $email = $data['email_centro'] ?? null;
+        $password = $data['password_centro'] ?? null;
+
+        if (!$email || !$password) {
+            return $this->json(['success' => false, 'error' => 'Datos de inicio de sesión incompletos'], 400);
+        }
+
+        $userRepository = $entityManager->getRepository(Centros::class);
+        $user = $userRepository->findOneBy(['email_centro' => $email]);
+
+        if (!$user || !$this->checkPassword($user, $password)) {
+            return $this->json(['success' => false, 'error' => 'Credenciales inválidas'], 400);
+        }
+
+        // Lógica para asignar roles si es necesario
+
+        // Autenticación exitosa
+        return $this->json(['success' => true]);
+    }
+
+    private function checkPassword($user, $password): bool
+    {
+        return $user->getPassword() === $password;
+    }
+
+    #[Route('/logout', name: 'app_logout')]
+    public function logout()
+    {
+        // Lógica de logout si es necesaria
     }
 }

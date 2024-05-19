@@ -1,0 +1,28 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nombre_centro">Nombre del Centro:</label>
+      <input formControlName="nombre_centro" type="text" id="nombre_centro">
+    </div>
+  
+    <div>
+      <label for="direccion_centro">Dirección del Centro:</label>
+      <input formControlName="direccion_centro" type="text" id="direccion_centro">
+    </div>
+  
+    <div>
+      <label for="telefono_centro">Teléfono del Centro:</label>
+      <input formControlName="telefono_centro" type="text" id="telefono_centro">
+    </div>
+  
+    <div>
+      <label for="email_centro">Email:</label>
+      <input formControlName="email_centro" type="email" id="email_centro">
+    </div>
+  
+    <div>
+      <label for="password_centro">Contraseña:</label>
+      <input formControlName="password_centro" type="password" id="password_centro">
+    </div>
+  
+    <button type="submit">Registrar</button>
+  </form>

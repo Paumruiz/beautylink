@@ -133,20 +133,20 @@ class CitasController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        $citaData = $data['cita'];
+        //$citaData = $data['cita'];
 
         // Recuperar entidades relacionadas (servicio, cliente, empleado, centro)
-        $servicio = $entityManager->getRepository(Servicios::class)->find($citaData['servicio']);
-        $cliente = $entityManager->getRepository(Clientes::class)->find($citaData['cliente']);
-        $empleado = $entityManager->getRepository(Empleados::class)->find($citaData['empleado']);
-        $centro = $entityManager->getRepository(Centros::class)->find($citaData['centro']);
+        $servicio = $entityManager->getRepository(Servicios::class)->find($data['servicio']);
+        $cliente = $entityManager->getRepository(Clientes::class)->find($data['cliente']);
+        $empleado = $entityManager->getRepository(Empleados::class)->find($data['empleado']);
+        $centro = $entityManager->getRepository(Centros::class)->find($data['centro']);
 
         $citaEntity = new Citas();
         $citaEntity->setServicioCita($servicio);
         $citaEntity->setClienteCita($cliente);
         $citaEntity->setEmpleadoCita($empleado);
         $citaEntity->setCentroCita($centro);
-        $citaEntity->setFechaCita(new \DateTime($citaData['fecha']));
+        $citaEntity->setFechaCita(new \DateTime($data['fecha']));
 
         $entityManager->persist($citaEntity);
         $entityManager->flush();
@@ -169,19 +169,39 @@ class CitasController extends AbstractController
         }
 
         // Actualizar las propiedades de la cita con los nuevos datos
-        if (isset($citaData['servicio'])) {
+        /*      if (isset($citaData['servicio'])) {
             $servicio = $entityManager->getRepository(Servicios::class)->find($citaData['servicio']);
             $citaEntity->setServicioCita($servicio);
-        }
-
-        if (isset($citaData['cliente'])) {
-            $cliente = $entityManager->getRepository(Clientes::class)->find($citaData['cliente']);
-            $citaEntity->setClienteCita($cliente);
         }
 
         if (isset($citaData['empleado'])) {
             $empleado = $entityManager->getRepository(Empleados::class)->find($citaData['empleado']);
             $citaEntity->setEmpleadoCita($empleado);
+        } */
+
+        if (isset($citaData['servicio'])) {
+            // Buscar el servicio por nombre
+            $servicio = $entityManager->getRepository(Servicios::class)->findOneByNombre($citaData['servicio']);
+            if (!$servicio) {
+                // Manejar el caso en que el servicio no se encuentra
+                return new JsonResponse(['error' => 'Servicio no encontrado.'], Response::HTTP_NOT_FOUND);
+            }
+            $citaEntity->setServicioCita($servicio);
+        }
+
+        if (isset($citaData['empleado'])) {
+            // Buscar el empleado por nombre
+            $empleado = $entityManager->getRepository(Empleados::class)->findOneByNombre($citaData['empleado']);
+            if (!$empleado) {
+                // Manejar el caso en que el empleado no se encuentra
+                return new JsonResponse(['error' => 'Empleado no encontrado.'], Response::HTTP_NOT_FOUND);
+            }
+            $citaEntity->setEmpleadoCita($empleado);
+        }
+
+        if (isset($citaData['cliente'])) {
+            $cliente = $entityManager->getRepository(Clientes::class)->find($citaData['cliente']);
+            $citaEntity->setClienteCita($cliente);
         }
 
         if (isset($citaData['centro'])) {
