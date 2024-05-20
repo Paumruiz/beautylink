@@ -1,1 +1,36 @@
-<p>centros-dashboard works!</p>
+<app-header></app-header>
+ 
+ <p>Número de citas: {{ num_citas }}</p>
+ <div>
+    <p>Total de Ingresos: {{ totalIngresos }}</p>
+  </div>
+ <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Servicio</th>
+          <th>Precio</th>
+          <th>Cliente</th>
+          <th>Empleado</th>
+          <th>Centro</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citas">
+          <td>{{ cita.id }}</td>
+          <td>{{ cita.servicio }}</td>
+          <td>{{ cita.precio_servicio }}</td>
+          <td>{{ cita.cliente }}</td>
+          <td>{{ cita.empleado }}</td>
+          <td>{{ cita.centro }}</td>
+          <td>{{ cita.fecha }}</td>
+          <td>
+            <button (click)="eliminarCita(cita.id)">Completada</button>
+         </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

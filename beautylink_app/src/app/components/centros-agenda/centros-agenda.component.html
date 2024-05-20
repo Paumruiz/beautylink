@@ -1,0 +1,29 @@
+<!-- <app-header></app-header> -->
+<div class="container">
+  <!-- Navegación de Semana y Mes Actual -->
+  <div class="week-navigation">
+    <button (click)="goToPreviousWeek()">Semana Anterior</button>
+    <span>{{ currentMonth }}</span>
+    <button (click)="goToNextWeek()">Semana Siguiente</button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Horas</th>
+        <!-- Modificación aquí para incluir el número del día -->
+        <th *ngFor="let dia of diasDeLaSemana">{{ dia.dia }} {{ dia.fecha }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hora of generateHours(); let i = index">
+        <td>{{ formatHour(hora) }}</td>
+        <td *ngFor="let dia of bloquesHorarios.dias" [ngClass]="{'cita-bloque': dia.horas[i].citas.length > 0}">
+          <div *ngFor="let cita of dia.horas[i].citas">
+            {{ cita.descripcion }} <!-- Asumiendo que las citas tienen una descripción -->
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

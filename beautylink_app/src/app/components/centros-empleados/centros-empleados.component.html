@@ -1,0 +1,52 @@
+<app-header></app-header>
+ 
+ <button routerLink="/insertar-empleados">Insertar Empleados</button>
+ <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Centro</th>
+        <th>Rol</th>
+        <th>Horario inicio</th>
+        <th>Horario fin</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td>{{ empleado.id }}</td>
+        <td>{{ empleado.nombre }}</td>
+        <td>{{ empleado.apellidos }}</td>
+        <td>{{ empleado.centro }}</td>
+        <td>{{ empleado.rol }}</td>
+        <td>{{ empleado.horario_inicio.date }}</td>
+        <td>{{ empleado.horario_fin.date }}</td>
+        <td>
+        <button (click)="editarEmpleado(empleado)">Actualizar</button>
+        <button (click)="eliminarEmpleado(empleado.id)">Eliminar</button>
+          
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="editMode">
+    <h3>Editando Cita</h3>
+    <form [formGroup]="empleadosForm" (ngSubmit)="actualizarEmpleado()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" formControlName="nombre">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" formControlName="apellidos">
+        <label for="rol">Rol:</label>
+        <input type="text" formControlName="rol">
+        <label for="horario_inicio">Horario de inicio:</label>
+        <input type="text" formControlName="horario_inicio">
+        <label for="horario_fin">Horario de fin:</label>
+        <input type="text" formControlName="horario_fin">
+        <button type="submit">Actualizar</button>
+    </form>
+  </div>

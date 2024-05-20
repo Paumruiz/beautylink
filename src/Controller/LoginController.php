@@ -88,6 +88,8 @@ class LoginController extends AbstractController
 
         $userRepository = $entityManager->getRepository(Centros::class);
         $user = $userRepository->findOneBy(['email_centro' => $email]);
+        $centroId = $user->getId();
+
 
         if (!$user || !$this->checkPassword($user, $password)) {
             return $this->json(['success' => false, 'error' => 'Credenciales inválidas'], 400);
@@ -96,7 +98,7 @@ class LoginController extends AbstractController
         // Lógica para asignar roles si es necesario
 
         // Autenticación exitosa
-        return $this->json(['success' => true]);
+        return $this->json(['success' => true, 'centroId' => $centroId]);
     }
 
     private function checkPassword($user, $password): bool

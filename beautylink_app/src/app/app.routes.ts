@@ -8,6 +8,11 @@ import { RegisterCentrosComponent } from './components/register-centros/register
 import { RegisterClientesComponent } from './components/register-clientes/register-clientes.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ReservarCitaComponent } from './components/reservar-cita/reservar-cita.component';
+import { CentrosCitasComponent } from './components/centros-citas/centros-citas.component';
+import { CentrosClientesComponent } from './components/centros-clientes/centros-clientes.component';
+import { CentrosEmpleadosComponent } from './components/centros-empleados/centros-empleados.component';
+import { InsertarEmpleadosComponent } from './components/insertar-empleados/insertar-empleados.component';
+import { CentrosAgendaComponent } from './components/centros-agenda/centros-agenda.component';
 
 export const routes: Routes = [
   { path: 'reservar-cita', component: ReservarCitaComponent },
@@ -15,6 +20,11 @@ export const routes: Routes = [
   { path: 'login-clientes', component: LoginClientesComponent },
   { path: 'client-dashboard', component: ClientDashboardComponent },
   { path: 'centros-dashboard', component: CentrosDashboardComponent },
+  { path: 'centros-clientes', component: CentrosClientesComponent },
+  { path: 'centros-citas', component: CentrosCitasComponent },
+  { path: 'centros-empleados', component: CentrosEmpleadosComponent },
+  { path: 'centros-agenda', component: CentrosAgendaComponent },
+  { path: 'insertar-empleados', component: InsertarEmpleadosComponent },
   { path: 'register-centros', component: RegisterCentrosComponent },
   { path: 'register-clientes', component: RegisterClientesComponent },
   { path: '404', component: NotfoundComponent },

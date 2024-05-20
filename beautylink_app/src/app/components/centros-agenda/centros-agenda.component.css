@@ -1,0 +1,24 @@
+.container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.cita-bloque {
+  background-color: #f0e68c; /* Cambia el color según prefieras */
+}
+
+.clase-dia-actual {
+  background-color: #4285F4; /* Color de fondo azul de Google */
+  color: white; /* Texto blanco */
+  /* Otros estilos que desees aplicar */
+}

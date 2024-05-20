@@ -1,0 +1,8 @@
+<form [formGroup]="empleadosForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="nombre" placeholder="Nombre">
+    <input type="text" formControlName="apellidos" placeholder="Apellidos">
+    <input type="text" formControlName="rol" placeholder="Rol">
+    <input type="text" formControlName="horario_inicio" placeholder="Horario de inicio">
+    <input type="text" formControlName="horario_fin" placeholder="Horario de fin">
+    <button type="submit">Insertar Empleado</button>
+  </form>

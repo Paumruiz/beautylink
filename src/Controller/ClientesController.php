@@ -11,12 +11,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ClientesController extends AbstractController
 {
-    #[Route('/clientes', name: 'app_clientes')]
-    public function listProductos(EntityManagerInterface $entityManager): JsonResponse
+    #[Route('/clientes/{id}', name: 'app_clientes')]
+    public function listProductos(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
 
-        $clientesRepository = $entityManager->getRepository(Clientes::class);
-        $clientes = $clientesRepository->findAll();
+        $clientes = $entityManager->getRepository(Clientes::class)->findBy(['id_centro' => $id]);;
 
         $data = [];
         foreach ($clientes as $cliente) {

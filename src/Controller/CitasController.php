@@ -105,7 +105,7 @@ class CitasController extends AbstractController
             ->getResult();
 
         if (empty($citas)) {
-            return new JsonResponse(['error' => 'No hay citas para este centro en los ultimos 7 dias'], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(['error' => 'No hay citas para este centro en los próximos 7 dias'], Response::HTTP_NOT_FOUND);
         }
 
         $formattedCitas = [];
@@ -113,6 +113,7 @@ class CitasController extends AbstractController
             $formattedCitas[] = [
                 'id' => $cita->getId(),
                 'servicio' => $cita->getServicioCita()->getNombreServicio(),
+                'precio_servicio' => $cita->getServicioCita()->getPrecioServicio(),
                 'cliente' => $cita->getClienteCita()->getNombreCliente(),
                 'empleado' => $cita->getEmpleadoCita()->getNombreEmpleado(),
                 'centro' => $cita->getCentroCita()->getNombreCentro(),
