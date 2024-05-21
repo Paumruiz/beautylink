@@ -36,6 +36,8 @@ export class LoginCentrosComponent {
           // Aquí puedes manejar la respuesta del servidor, redireccionar, etc.
           if (response.success) {
             localStorage.setItem('idCentro', response.centroId); // Suponiendo que el servidor responde con un objeto JSON que contiene una clave 'success' que indica si el inicio de sesión fue exitoso
+            localStorage.setItem('nombre_centro', response.nombre_centro);
+            localStorage.setItem('email_centro', response.email_centro);
             this.router.navigate(['/centros-dashboard']); // Redirecciona a la ruta centros-dashboard
           }
         },

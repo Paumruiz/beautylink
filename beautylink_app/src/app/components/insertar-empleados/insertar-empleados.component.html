@@ -1,8 +1,36 @@
+<app-header class="poppins-regular"></app-header>
+<div class="main-content">
+<app-center-bar class="poppins-regular"></app-center-bar>
+<p class="bienvenido">
+  Bienvenido, <span>{{ nombreCentro }}</span>
+</p>
+<h1 class="title">NUEVO EMPLEADO</h1>
 <form [formGroup]="empleadosForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="nombre" placeholder="Nombre">
-    <input type="text" formControlName="apellidos" placeholder="Apellidos">
-    <input type="text" formControlName="rol" placeholder="Rol">
-    <input type="text" formControlName="horario_inicio" placeholder="Horario de inicio">
-    <input type="text" formControlName="horario_fin" placeholder="Horario de fin">
-    <button type="submit">Insertar Empleado</button>
-  </form>
+  <div class="form-group">
+      <label class="form-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control">
+  </div>
+  <div class="form-group">
+      <label class="form-label">Apellidos</label>
+      <input type="text" formControlName="apellidos" class="form-control">
+  </div>
+  <div class="form-group">
+      <label class="form-label">Rol</label>
+      <input type="text" formControlName="rol" class="form-control">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Hora de inicio</label>
+    <input matInput [ngxTimepicker]="pickerInicio" formControlName="horario_inicio" class="pickerInput">
+    <ngx-material-timepicker-toggle matSuffix [for]="pickerInicio" class="pickerToggle"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #pickerInicio></ngx-material-timepicker>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Hora de finalización</label>
+    <input matInput [ngxTimepicker]="pickerFin" formControlName="horario_fin" class="pickerInput">
+    <ngx-material-timepicker-toggle matSuffix [for]="pickerFin" class="pickerToggle"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #pickerFin></ngx-material-timepicker>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Insertar Empleado</button>
+</form>
+</div>

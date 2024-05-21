@@ -1,17 +1,16 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
-import { NgFor } from '@angular/common';
-import { Observable } from 'rxjs';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ClientBarComponent } from '../client-bar/client-bar.component';
-import { SidebarHeaderComponent } from '../sidebar-header/sidebar-header.component';
+import { Observable } from 'rxjs';
+import { HeaderComponent } from '../header/header.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -20,14 +19,14 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatNativeDatetimeModule } from '@mat-datetimepicker/core';
 
 @Component({
-  selector: 'app-reservar-cita',
+  selector: 'app-insertar-cita-centro',
   standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
     NgFor,
-    ClientBarComponent,
-    SidebarHeaderComponent,
+    CenterBarComponent,
+    HeaderComponent,
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
@@ -35,15 +34,15 @@ import { MatNativeDatetimeModule } from '@mat-datetimepicker/core';
     MatDatetimepickerModule,
     NgxMaterialTimepickerModule,
   ],
-  templateUrl: './reservar-cita.component.html',
-  styleUrl: './reservar-cita.component.css',
+  templateUrl: './insertar-cita-centro.component.html',
+  styleUrl: './insertar-cita-centro.component.css',
 })
-export class ReservarCitaComponent {
+export class InsertarCitaCentroComponent {
   citaForm: FormGroup;
   servicios: any[] = [];
   empleados: any[] = [];
-  nombreCliente: string | null = '';
-  apellidosCliente: string | null = '';
+  clientes: any[] = [];
+  nombreCentro: string | null = '';
 
   private registerUrl = 'http://localhost:8000/citas';
 
@@ -54,21 +53,22 @@ export class ReservarCitaComponent {
   ) {
     this.citaForm = this.fb.group({
       servicio: '',
-      cliente: localStorage.getItem('idCliente'),
+      cliente: '',
       empleado: '',
       centro: localStorage.getItem('idCentro'),
       fecha: '',
     });
 
+    this.cargarClientes();
     this.cargarServicios();
     this.cargarEmpleados();
-    this.nombreCliente = localStorage.getItem('nombre_cliente');
-    this.apellidosCliente = localStorage.getItem('apellidos_cliente');
+    this.nombreCentro = localStorage.getItem('nombre_centro');
   }
 
   idCentro = localStorage.getItem('idCentro');
   private empleadosUrl = `http://localhost:8000/empleados/${this.idCentro}`;
   private serviciosUrl = 'http://localhost:8000/servicios'; // Asegúrate de tener este endpoint en tu backend
+  private clientesUrl = `http://localhost:8000/clientes/${this.idCentro}`;
 
   cargarServicios(): void {
     this.http.get<any[]>(this.serviciosUrl).subscribe({
@@ -80,6 +80,13 @@ export class ReservarCitaComponent {
   cargarEmpleados(): void {
     this.http.get<any[]>(this.empleadosUrl).subscribe({
       next: (empleados) => (this.empleados = empleados),
+      error: (error) => console.error('Error al cargar empleados', error),
+    });
+  }
+
+  cargarClientes(): void {
+    this.http.get<any[]>(this.clientesUrl).subscribe({
+      next: (clientes) => (this.clientes = clientes),
       error: (error) => console.error('Error al cargar empleados', error),
     });
   }
@@ -110,7 +117,7 @@ export class ReservarCitaComponent {
         this.register(this.citaForm.value).subscribe({
           next: (response) => {
             console.log('Cita insertada', response);
-            this.router.navigate(['/client-dashboard']);
+            this.router.navigate(['/centros-citas']);
           },
           error: (error) => console.error('Error al insertar cita', error),
         });

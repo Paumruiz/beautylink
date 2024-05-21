@@ -14,6 +14,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { ClientBarComponent } from '../client-bar/client-bar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatNativeDatetimeModule } from '@mat-datetimepicker/core';
 
 @Component({
   selector: 'app-client-dashboard',
@@ -24,6 +31,13 @@ import { Router, RouterLink } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    ClientBarComponent,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatNativeDatetimeModule,
+    MatDatetimepickerModule,
+    NgxMaterialTimepickerModule,
   ],
   templateUrl: './client-dashboard.component.html',
   styleUrl: './client-dashboard.component.css',
@@ -33,6 +47,8 @@ export class ClientDashboardComponent {
   editMode: boolean = false;
   citaForm: FormGroup;
   citaToEdit: any;
+  nombreCliente: string | null = '';
+  apellidosCliente: string | null = '';
 
   constructor(
     private clientDashboardService: ClientDashboardService,
@@ -52,6 +68,8 @@ export class ClientDashboardComponent {
   ngOnInit(): void {
     this.loadCitas();
     this.initForm();
+    this.nombreCliente = localStorage.getItem('nombre_cliente');
+    this.apellidosCliente = localStorage.getItem('apellidos_cliente');
   }
 
   loadCitas(): void {
@@ -90,19 +108,37 @@ export class ClientDashboardComponent {
 
   actualizarCita(): void {
     if (this.citaForm.valid) {
-      const citaData = this.citaForm.value;
-      this.http
-        .patch(`http://localhost:8000/citas/${this.citaToEdit.id}`, {
-          cita: citaData,
-        })
-        .subscribe({
-          next: (response) => {
-            console.log('Cita actualizada correctamente', response);
-            this.loadCitas(); // Actualiza la lista de citas después de la actualización
-            this.cancelEditMode();
-          },
-          error: (error) => console.error('Error al actualizar la cita', error),
-        });
+      let fechaControl = this.citaForm.get('fecha');
+      if (fechaControl) {
+        let fechaHora: Date = fechaControl.value;
+        let fechaHoraUTC = new Date(
+          Date.UTC(
+            fechaHora.getFullYear(),
+            fechaHora.getMonth(),
+            fechaHora.getDate(),
+            fechaHora.getHours(),
+            fechaHora.getMinutes()
+          )
+        );
+
+        // Replace the 'fecha' field in the form with the UTC date
+        this.citaForm.patchValue({ fecha: fechaHoraUTC });
+
+        const citaData = this.citaForm.value;
+        this.http
+          .patch(`http://localhost:8000/citas/${this.citaToEdit.id}`, {
+            cita: citaData,
+          })
+          .subscribe({
+            next: (response) => {
+              console.log('Cita actualizada correctamente', response);
+              this.loadCitas(); // Actualiza la lista de citas después de la actualización
+              this.cancelEditMode();
+            },
+            error: (error) =>
+              console.error('Error al actualizar la cita', error),
+          });
+      }
     }
   }
 

@@ -1,0 +1,40 @@
+<app-header class="poppins-regular"></app-header>
+<div class="main-content">
+<app-center-bar class="poppins-regular"></app-center-bar>
+<p class="bienvenido">
+    Bienvenido, <span>{{ nombreCentro }}</span>
+</p>
+<h1 class="title">NUEVA CITA</h1>
+
+<form [formGroup]="citaForm" (ngSubmit)="onSubmit()" class="cita-form">
+    <div class="form-group">
+        <label for="cliente">Cliente:</label>
+        <select formControlName="cliente" id="cliente" class="form-control">
+            <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="servicio">Servicio:</label>
+        <select formControlName="servicio" id="servicio" class="form-control">
+            <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="empleado">Empleado:</label>
+        <select formControlName="empleado" id="empleado" class="form-control">
+            <option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="fecha">Fecha y Hora de la Cita:</label>
+        <input matInput [matDatetimepicker]="pickerFechaHora" formControlName="fecha" id="fecha" class="form-control" (click)="pickerFechaHora.open()">
+        <mat-datetimepicker-toggle matSuffix [for]="pickerFechaHora" class="hideIcon"></mat-datetimepicker-toggle>
+        <mat-datetimepicker #pickerFechaHora type="datetime"></mat-datetimepicker>
+    </div>
+<!--     <input type="text" formControlName="fecha" placeholder="Fecha de la Cita" class="form-control">
+ -->    <button type="submit" class="btn btn-primary">Insertar cita</button>
+</form>
+</div>
+
+ 

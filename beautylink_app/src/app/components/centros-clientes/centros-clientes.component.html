@@ -1,8 +1,16 @@
-<app-header></app-header>
+<app-header class="poppins-regular"></app-header>
+<div class="main-content">
+<app-center-bar class="poppins-regular"></app-center-bar>
+<p class="bienvenido">
+  Bienvenido, <span>{{ nombreCentro }}</span>
+</p>
+<div class="title-container">
+  <h1 class="title">CLIENTES</h1>
+</div>
 <div class="table-container">
   <table>
     <thead>
-      <tr>
+      <tr class="poppins-semibold">
         <th>ID</th>
         <th>Nombre</th>
         <th>Apellidos</th>
@@ -11,7 +19,7 @@
         <th>Contraseña</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="poppins-regular">
       <tr *ngFor="let cliente of clientes">
         <td>{{ cliente.id }}</td>
         <td>{{ cliente.nombre }}</td>
@@ -22,4 +30,5 @@
       </tr>
     </tbody>
   </table>
+</div>
 </div>

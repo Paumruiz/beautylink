@@ -15,6 +15,7 @@ import {
   CentrosDashboardService,
   CitasResponse,
 } from '../../services/centros-dashboard.service';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
 
 @Component({
   selector: 'app-centros-dashboard',
@@ -25,6 +26,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    CenterBarComponent,
   ],
   templateUrl: './centros-dashboard.component.html',
   styleUrl: './centros-dashboard.component.css',
@@ -33,12 +35,14 @@ export class CentrosDashboardComponent {
   private baseUrl = 'http://localhost:8000';
   citas: Citas[] = [];
   num_citas: number = 0;
+  nombreCentro: string | null = '';
 
   constructor(
     private centrosDashboardService: CentrosDashboardService,
     private http: HttpClient
   ) {
     this.cargarTotalIngresos();
+    this.nombreCentro = localStorage.getItem('nombre_centro');
   }
 
   cargarTotalIngresos() {

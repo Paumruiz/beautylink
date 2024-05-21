@@ -14,11 +14,231 @@
 }
 
 .cita-bloque {
-  background-color: #f0e68c; /* Cambia el color según prefieras */
+  background-color: #ff9dce; /* Cambia el color según prefieras */
 }
 
-.clase-dia-actual {
-  background-color: #4285F4; /* Color de fondo azul de Google */
-  color: white; /* Texto blanco */
-  /* Otros estilos que desees aplicar */
+.current-day-highlight {
+  background-color: #D63484;
+  color: white; /* Cambia el color del texto si es necesario para que sea legible */
 }
+
+.main-content{
+  margin-left: 350px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  border-bottom: 1px solid #F0F0F0;
+  padding: 8px;
+}
+
+/* Estilos para las celdas de cabecera */
+.table-container th {
+  text-align: left;
+}
+
+/* Estilos para las celdas de datos */
+.table-container td {
+  text-align: left;
+}
+
+
+/* Estilos para el formulario de edición de citas */
+.poppins-regular h3 {
+  font-weight: bold;
+}
+
+.poppins-regular .form-group {
+  margin-bottom: 15px;
+}
+
+.poppins-regular .form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.poppins-regular .form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.main-content{
+  margin-left: 350px;
+  margin-right: 60px;
+}
+
+.bienvenido{
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.bienvenido span{
+ color: #D63484;
+}
+
+.title{
+  padding: 24px 0px;
+  font-size: 32px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.subtitle{
+  padding: 24px 0px;
+  font-size: 26px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+
+/* Estilos para la tabla */
+table {
+  border-collapse: collapse; /* Elimina los espacios entre las celdas */
+  width: 100%; /* Opcional: hace que la tabla ocupe el 100% del ancho del contenedor */
+}
+
+th,
+td {
+  border: none; /* Elimina todos los bordes de las celdas */
+  padding: 8px; /* Ajusta el espaciado interno de las celdas */
+}
+
+/* Estilos para la fila de encabezado (thead) */
+thead {
+  background-color: #F0F0F0; /* Color de fondo gris */
+}
+
+/* Estilos para las celdas del cuerpo de la tabla (tbody) */
+tbody {
+  background-color: white; /* Color de fondo blanco */
+}
+
+/* Estilos para las filas impares del cuerpo de la tabla */
+
+
+/* Estilos para las filas pares del cuerpo de la tabla */
+tbody tr {
+  background-color: white; /* Color de fondo blanco para las filas pares */
+}
+
+button{
+  border: none;
+  background-color: #f4f4f4;
+}
+
+.poppins-regular {
+  margin: 0;
+  text-align: left;
+  width: calc(50% - 120px);
+  padding-top: 2em;  
+  margin-right: 60px;
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  color: #D63484;
+}
+
+.form-control {
+  height: 2em;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control:hover {
+  border-left: 4px solid #D63484;
+}
+
+.act {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.act-primary {
+  background-color: #D63484;
+  color: #fff;
+  border: 1px solid #D63484;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.info {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 45%; /* Ajusta el ancho según tus preferencias */
+}
+
+/* Estilos para los párrafos dentro de los divs */
+.info-text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  margin-bottom: 12px;
+
+}
+
+.number-text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  color:#D63484;
+  font-weight: bold;
+  margin: 0;
+
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+  font-family: 'Poppins', sans-serif; 
+  margin: 0 0 16px;/* Ajusta la fuente según tus preferencias */
+}
+
+.btn-primary {
+  background-color: #D63484;
+  color: #fff;
+  border: 1px solid #D63484;
+}
+
+.mes{
+  font-family: 'Poppins', sans-serif; 
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.week-navigation{
+  padding-bottom: 20px;
+}
+
+.container-table{
+  padding-bottom: 5em;
+}
+

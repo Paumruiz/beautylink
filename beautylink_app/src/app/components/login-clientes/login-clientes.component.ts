@@ -38,6 +38,12 @@ export class LoginClientesComponent {
             // Suponiendo que el servidor responde con un objeto JSON que contiene una clave 'success' que indica si el inicio de sesión fue exitoso
             localStorage.setItem('idCliente', response.clientId); // Guarda la id del cliente en el localStorage
             localStorage.setItem('idCentro', response.centroId); // Guarda la id del cliente en el localStorage
+            localStorage.setItem('nombre_cliente', response.nombre_cliente);
+            localStorage.setItem(
+              'apellidos_cliente',
+              response.apellidos_cliente
+            );
+            localStorage.setItem('email_cliente', response.email_cliente);
             this.router.navigate(['/client-dashboard']); // Redirecciona a la ruta centros-dashboard
           }
         },

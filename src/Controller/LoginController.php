@@ -95,10 +95,12 @@ class LoginController extends AbstractController
             return $this->json(['success' => false, 'error' => 'Credenciales inválidas'], 400);
         }
 
-        // Lógica para asignar roles si es necesario
+
+        $nombreCentro = $user->getNombreCentro();
+        $emailCentro = $user->getEmailCentro();
 
         // Autenticación exitosa
-        return $this->json(['success' => true, 'centroId' => $centroId]);
+        return $this->json(['success' => true, 'centroId' => $centroId, 'nombre_centro' => $nombreCentro, 'email_centro' => $emailCentro]);
     }
 
     private function checkPassword($user, $password): bool

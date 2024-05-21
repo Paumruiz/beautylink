@@ -13,9 +13,11 @@ import { CentrosClientesComponent } from './components/centros-clientes/centros-
 import { CentrosEmpleadosComponent } from './components/centros-empleados/centros-empleados.component';
 import { InsertarEmpleadosComponent } from './components/insertar-empleados/insertar-empleados.component';
 import { CentrosAgendaComponent } from './components/centros-agenda/centros-agenda.component';
+import { InsertarCitaCentroComponent } from './components/insertar-cita-centro/insertar-cita-centro.component';
 
 export const routes: Routes = [
   { path: 'reservar-cita', component: ReservarCitaComponent },
+  { path: 'insertar-cita-centro', component: InsertarCitaCentroComponent },
   { path: 'login-centros', component: LoginCentrosComponent },
   { path: 'login-clientes', component: LoginClientesComponent },
   { path: 'client-dashboard', component: ClientDashboardComponent },

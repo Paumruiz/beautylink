@@ -1,44 +1,68 @@
-<app-sidebar-header></app-sidebar-header>
+<app-sidebar-header class="poppins-regular"></app-sidebar-header>
+<div class="main-content">
+<app-client-bar class="poppins-regular"></app-client-bar>
+<p class="bienvenido">Bienvenido, <span>{{ nombreCliente}} {{apellidosCliente}}</span></p>
+<h1 class="title">MIS CITAS</h1>
 <div class="table-container">
   <table>
     <thead>
-      <tr>
+      <tr class="poppins-semibold">
         <th>ID</th>
-        <th>Servicio</th>
-        <th>Cliente</th>
-        <th>Empleado</th>
-        <th>Centro</th>
         <th>Fecha</th>
+        <th>Servicio</th>
+        <th>Empleado</th>
         <th>Acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="poppins-regular">
       <tr *ngFor="let cita of citas">
         <td>{{ cita.id }}</td>
-        <td>{{ cita.servicio }}</td>
-        <td>{{ cita.cliente }}</td>
-        <td>{{ cita.empleado }}</td>
-        <td>{{ cita.centro }}</td>
         <td>{{ cita.fecha }}</td>
+        <td>{{ cita.servicio }}</td>
+        <td>{{ cita.empleado }}</td>
         <td>
-         <button (click)="editarCita(cita)">Actualizar</button>
-         <button (click)="eliminarCita(cita.id)">Eliminar</button>
-       
-      </td>
+          <button class="btn btn-primary" (click)="editarCita(cita)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0553 9.14508H17.0577C17.4992 9.14508 17.8582 9.51675 17.859 9.97591C17.8654 12.2017 17.0377 14.2976 15.5281 15.8759C14.0192 17.4542 12.0096 18.3267 9.86941 18.3334H9.84617C7.71396 18.3334 5.70835 17.4734 4.19633 15.9092C2.6787 14.3401 1.83976 12.2501 1.83335 10.0242C1.82694 7.79758 2.65466 5.70258 4.16428 4.12425C5.67309 2.54591 7.68271 1.67341 9.82293 1.66675C10.46 1.67675 11.109 1.74341 11.7308 1.89841C12.1603 2.00675 12.4255 2.45675 12.3213 2.90425C12.218 3.35091 11.7829 3.62591 11.355 3.51925C10.8574 3.39425 10.3293 3.34175 9.82774 3.33341C8.1154 3.33841 6.50723 4.03675 5.3005 5.29925C4.09297 6.56175 3.43111 8.23841 3.43591 10.0192C3.44072 11.8001 4.1122 13.4717 5.32614 14.7276C6.53607 15.9784 8.14024 16.6667 9.84617 16.6667H9.8646C11.5769 16.6617 13.1851 15.9634 14.3918 14.7009C15.5994 13.4376 16.2612 11.7617 16.2564 9.98092C16.2556 9.52091 16.613 9.14591 17.0553 9.14508ZM6.87582 9.41083C7.18912 9.085 7.69553 9.085 8.00883 9.41083L9.80691 11.2808L14.8526 5.28416C15.1442 4.94 15.6499 4.90333 15.9832 5.20667C16.3157 5.50917 16.3494 6.03583 16.0577 6.3825L10.4487 13.0492C10.3029 13.2225 10.0946 13.325 9.87261 13.3333H9.84617C9.63383 13.3333 9.4303 13.2458 9.27966 13.0892L6.87582 10.5892C6.56252 10.2633 6.56252 9.73666 6.87582 9.41083Z" fill="#C5CEE0"/>
+            <mask id="mask0_1207_437" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="17" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0553 9.14508H17.0577C17.4992 9.14508 17.8582 9.51675 17.859 9.97591C17.8654 12.2017 17.0377 14.2976 15.5281 15.8759C14.0192 17.4542 12.0096 18.3267 9.86941 18.3334H9.84617C7.71396 18.3334 5.70835 17.4734 4.19633 15.9092C2.6787 14.3401 1.83976 12.2501 1.83335 10.0242C1.82694 7.79758 2.65466 5.70258 4.16428 4.12425C5.67309 2.54591 7.68271 1.67341 9.82293 1.66675C10.46 1.67675 11.109 1.74341 11.7308 1.89841C12.1603 2.00675 12.4255 2.45675 12.3213 2.90425C12.218 3.35091 11.7829 3.62591 11.355 3.51925C10.8574 3.39425 10.3293 3.34175 9.82774 3.33341C8.1154 3.33841 6.50723 4.03675 5.3005 5.29925C4.09297 6.56175 3.43111 8.23841 3.43591 10.0192C3.44072 11.8001 4.1122 13.4717 5.32614 14.7276C6.53607 15.9784 8.14024 16.6667 9.84617 16.6667H9.8646C11.5769 16.6617 13.1851 15.9634 14.3918 14.7009C15.5994 13.4376 16.2612 11.7617 16.2564 9.98092C16.2556 9.52091 16.613 9.14591 17.0553 9.14508ZM6.87582 9.41083C7.18912 9.085 7.69553 9.085 8.00883 9.41083L9.80691 11.2808L14.8526 5.28416C15.1442 4.94 15.6499 4.90333 15.9832 5.20667C16.3157 5.50917 16.3494 6.03583 16.0577 6.3825L10.4487 13.0492C10.3029 13.2225 10.0946 13.325 9.87261 13.3333H9.84617C9.63383 13.3333 9.4303 13.2458 9.27966 13.0892L6.87582 10.5892C6.56252 10.2633 6.56252 9.73666 6.87582 9.41083Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_1207_437)">
+            </g>
+            </svg>
+            </button>
+          <button class="btn btn-secondary" (click)="eliminarCita(cita.id)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.70506 13.3334C8.70506 13.7917 8.34448 14.1667 7.90377 14.1667C7.46307 14.1667 7.10249 13.7917 7.10249 13.3334V10C7.10249 9.54169 7.46307 9.16669 7.90377 9.16669C8.34448 9.16669 8.70506 9.54169 8.70506 10V13.3334ZM13.5127 13.3334C13.5127 13.7917 13.1522 14.1667 12.7115 14.1667C12.2708 14.1667 11.9102 13.7917 11.9102 13.3334V10C11.9102 9.54169 12.2708 9.16669 12.7115 9.16669C13.1522 9.16669 13.5127 9.54169 13.5127 10V13.3334ZM15.1153 15.8334C15.1153 16.2925 14.7563 16.6667 14.314 16.6667H6.30121C5.8589 16.6667 5.49993 16.2925 5.49993 15.8334V6.66669H15.1153V15.8334ZM8.70506 3.60669C8.70506 3.47752 8.87653 3.33335 9.1057 3.33335H11.5095C11.7387 3.33335 11.9102 3.47752 11.9102 3.60669V5.00002H8.70506V3.60669ZM17.5192 5.00002H16.7179H13.5127V3.60669C13.5127 2.53669 12.6145 1.66669 11.5095 1.66669H9.1057C8.00073 1.66669 7.10249 2.53669 7.10249 3.60669V5.00002H3.89736H3.09608C2.65538 5.00002 2.2948 5.37502 2.2948 5.83335C2.2948 6.29169 2.65538 6.66669 3.09608 6.66669H3.89736V15.8334C3.89736 17.2117 4.97589 18.3334 6.30121 18.3334H14.314C15.6394 18.3334 16.7179 17.2117 16.7179 15.8334V6.66669H17.5192C17.9599 6.66669 18.3204 6.29169 18.3204 5.83335C18.3204 5.37502 17.9599 5.00002 17.5192 5.00002Z" fill="#C5CEE0"/>
+            <mask id="mask0_1207_444" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="17" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.70506 13.3334C8.70506 13.7917 8.34448 14.1667 7.90377 14.1667C7.46307 14.1667 7.10249 13.7917 7.10249 13.3334V10C7.10249 9.54169 7.46307 9.16669 7.90377 9.16669C8.34448 9.16669 8.70506 9.54169 8.70506 10V13.3334ZM13.5127 13.3334C13.5127 13.7917 13.1522 14.1667 12.7115 14.1667C12.2708 14.1667 11.9102 13.7917 11.9102 13.3334V10C11.9102 9.54169 12.2708 9.16669 12.7115 9.16669C13.1522 9.16669 13.5127 9.54169 13.5127 10V13.3334ZM15.1153 15.8334C15.1153 16.2925 14.7563 16.6667 14.314 16.6667H6.30121C5.8589 16.6667 5.49993 16.2925 5.49993 15.8334V6.66669H15.1153V15.8334ZM8.70506 3.60669C8.70506 3.47752 8.87653 3.33335 9.1057 3.33335H11.5095C11.7387 3.33335 11.9102 3.47752 11.9102 3.60669V5.00002H8.70506V3.60669ZM17.5192 5.00002H16.7179H13.5127V3.60669C13.5127 2.53669 12.6145 1.66669 11.5095 1.66669H9.1057C8.00073 1.66669 7.10249 2.53669 7.10249 3.60669V5.00002H3.89736H3.09608C2.65538 5.00002 2.2948 5.37502 2.2948 5.83335C2.2948 6.29169 2.65538 6.66669 3.09608 6.66669H3.89736V15.8334C3.89736 17.2117 4.97589 18.3334 6.30121 18.3334H14.314C15.6394 18.3334 16.7179 17.2117 16.7179 15.8334V6.66669H17.5192C17.9599 6.66669 18.3204 6.29169 18.3204 5.83335C18.3204 5.37502 17.9599 5.00002 17.5192 5.00002Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_1207_444)">
+            </g>
+            </svg>
+            </button>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<div *ngIf="editMode">
-  <h3>Editando Cita</h3>
+<div *ngIf="editMode" class="poppins-regular">
+  <h3 class="poppins-bold">Editando Cita</h3>
   <form [formGroup]="citaForm" (ngSubmit)="actualizarCita()">
-    <label for="servicio">Servicio:</label>
-    <input type="text" formControlName="servicio">
-    <label for="empleado">Empleado:</label>
-    <input type="text" formControlName="empleado">
-    <label for="fecha">Fecha:</label>
-    <input type="text" formControlName="fecha">
-    <button type="submit">Actualizar</button>
+    <div class="form-group">
+      <label for="servicio" class="form-label">Servicio:</label>
+      <input type="text" formControlName="servicio" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="empleado" class="form-label">Empleado:</label>
+      <input type="text" formControlName="empleado" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="fecha">Fecha y Hora de la Cita:</label>
+      <input matInput [matDatetimepicker]="pickerFechaHora" formControlName="fecha" id="fecha" class="form-control" (click)="pickerFechaHora.open()">
+      <mat-datetimepicker-toggle matSuffix [for]="pickerFechaHora" class="hideIcon"></mat-datetimepicker-toggle>
+      <mat-datetimepicker #pickerFechaHora type="datetime"></mat-datetimepicker>
+  </div>
+    <button type="submit" class="act act-primary">Actualizar</button>
   </form>
+</div>
 </div>

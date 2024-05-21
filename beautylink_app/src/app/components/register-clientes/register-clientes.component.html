@@ -1,34 +1,44 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="email_cliente">Email:</label>
-        <input formControlName="email_cliente" type="text" id="email_cliente">
-      </div>
+<div class="login-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="form-group">
+      <label for="email_cliente" class="form-label">Email:</label>
+      <input formControlName="email_cliente" type="text" id="email_cliente" class="form-control">
+    </div>
     
-    <div>
-      <label for="nombre_cliente">Nombre:</label>
-      <input formControlName="nombre_cliente" type="text" id="nombre_cliente">
+    <div class="form-group">
+      <label for="nombre_cliente" class="form-label">Nombre:</label>
+      <input formControlName="nombre_cliente" type="text" id="nombre_cliente" class="form-control">
     </div>
   
-    <div>
-      <label for="apellidos_cliente">Apellidos:</label>
-      <input formControlName="apellidos_cliente" type="text" id="apellidos_cliente">
+    <div class="form-group">
+      <label for="apellidos_cliente" class="form-label">Apellidos:</label>
+      <input formControlName="apellidos_cliente" type="text" id="apellidos_cliente" class="form-control">
     </div>
   
-    <div>
-      <label for="telefono_cliente">Teléfono:</label>
-      <input formControlName="telefono_cliente" type="text" id="telefono_cliente">
+    <div class="form-group">
+      <label for="telefono_cliente" class="form-label">Teléfono:</label>
+      <input formControlName="telefono_cliente" type="text" id="telefono_cliente" class="form-control">
     </div>
-    <div>
-        <label for="id_centro">Centro:</label>
-        <select formControlName="id_centro" id="id_centro">
-            <option *ngFor="let centro of centros" [value]="centro.id">{{ centro.nombre }}</option>
-        </select>
-    </div>
-  
-    <div>
-      <label for="password_cliente">Contraseña:</label>
-      <input formControlName="password_cliente" type="password" id="password_cliente">
+    
+    <div class="form-group">
+      <label for="id_centro" class="form-label">Centro:</label>
+      <select formControlName="id_centro" id="id_centro" class="form-control select">
+        <option *ngFor="let centro of centros" [value]="centro.id">{{ centro.nombre }}</option>
+      </select>
     </div>
   
-    <button type="submit">Registrar</button>
+    <div class="form-group">
+      <label for="password_cliente" class="form-label">Contraseña:</label>
+      <input formControlName="password_cliente" type="password" id="password_cliente" class="form-control">
+    </div>
+  
+    <button type="submit" class="btn btn-login">Registrar</button>
   </form>
+</div>
+
+<div class="vertical-grey">
+  <div class="content">
+    <img src="assets/images/coverlogo.png" alt="Imagen" class="center-image">
+    <p class="center-text">Transforma tu belleza, simplifica tu gestión.</p>
+  </div>
+</div>

@@ -343,4 +343,26 @@ outline:none;
     font-family: 'Poppins', sans-serif;
     color: #D63484;
 }
+.login-container {
+  margin: 0;
+  text-align: left;
+  width: calc(50% - 120px); /* Ajusta el ancho según tus preferencias */
+  padding: 4em;
+  margin-right: 60px; /* Ajusta el margen derecho según tus preferencias */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+.vertical-grey {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%; /* ajusta el ancho según tus preferencias */
+  background-color: #ffffff; /* color de fondo gris */
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  justify-content: center; /* Centra horizontalmente los elementos */
+  padding: 20px; /* Añade un padding para separar el contenido del borde */
+}
+
 

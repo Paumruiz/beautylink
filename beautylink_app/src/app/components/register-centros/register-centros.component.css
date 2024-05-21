@@ -1,0 +1,88 @@
+.login-container {
+    margin: 0;
+    text-align: left;
+    width: calc(50% - 120px); /* Ajusta el ancho según tus preferencias */
+    padding: 4em;
+    margin-right: 60px; /* Ajusta el margen derecho según tus preferencias */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    color: #D63484;
+  }
+  
+  .form-control {
+    height: 2em;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    font-family: 'Poppins', sans-serif; /* Ajusta la fuente según tus preferencias */
+  }
+  
+  .form-control:hover {
+    border-left: 4px solid #D63484;
+  }
+  
+  .buttons-div {
+    white-space: nowrap; /* Prevent line break */
+    padding: 18px 0px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    font-family: 'Poppins', sans-serif; /* Ajusta la fuente según tus preferencias */
+  }
+  
+  .btn-primary {
+    background-color: #D63484;
+    color: #fff;
+    border: 1px solid #D63484;
+  }
+  
+  .btn-register {
+    background-color: #ffffff;
+    color: #D63484;
+    border: 1px solid #D63484;
+  }
+  
+  .btn-register a {
+    text-decoration: none;
+    color: #D63484;
+  }
+  
+  .vertical-grey {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%; /* ajusta el ancho según tus preferencias */
+    background-color: #ffffff; /* color de fondo gris */
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    padding: 20px; /* Añade un padding para separar el contenido del borde */
+  }
+  
+  .center-image {
+    display: block;
+    max-width: 75%; /* Ajusta el tamaño máximo de la imagen */
+    height: auto;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+  }
+  
+  .center-text {
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 30px;
+    font-family: Poppins;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+  

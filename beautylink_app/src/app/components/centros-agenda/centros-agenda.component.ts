@@ -8,6 +8,7 @@ import { CentrosCitasService } from '../../services/centros-citas.service';
 import { HttpClient } from '@angular/common/http';
 import moment from 'moment-timezone';
 import { ChangeDetectorRef } from '@angular/core';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
 
 interface BloqueHorario {
   horas: Array<{ citas: Citas[] }>;
@@ -37,6 +38,7 @@ interface Dia {
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    CenterBarComponent,
   ],
   templateUrl: './centros-agenda.component.html',
   styleUrl: './centros-agenda.component.css',
@@ -47,6 +49,8 @@ export class CentrosAgendaComponent {
     dias: Dia[];
   };
   currentDate: moment.Moment = moment();
+  diaActualIndex: number = 0;
+  nombreCentro: string | null = '';
 
   diasSemana = [
     'Lunes',
@@ -63,11 +67,19 @@ export class CentrosAgendaComponent {
     private http: HttpClient
   ) {
     this.bloquesHorarios = { dias: [] };
+    this.diaActualIndex = moment().date();
+    console.log('dia actual', this.diaActualIndex);
   }
 
   ngOnInit(): void {
     this.inicializarBloquesHorarios();
     this.loadCitas();
+    this.nombreCentro = localStorage.getItem('nombre_centro');
+  }
+
+  isCurrentDay(dayIndex: string): boolean {
+    const fechaNumero = parseInt(dayIndex, 10);
+    return fechaNumero === this.diaActualIndex;
   }
 
   goToNextWeek(): void {
@@ -99,22 +111,25 @@ export class CentrosAgendaComponent {
   ];
 
   inicializarBloquesHorarios(): void {
-    this.diasDeLaSemana = this.nombresDias.map((nombreDia, index) => {
-      const fecha = this.currentDate.clone().add(index, 'days');
-      return {
+    const fechaInicioSemana = this.currentDate.clone().startOf('isoWeek');
+    this.diasDeLaSemana = [];
+
+    for (let i = 0; i < 7; i++) {
+      const fecha = fechaInicioSemana.clone().add(i, 'days');
+      const nombreDia = this.nombresDias[fecha.isoWeekday() - 1];
+      this.diasDeLaSemana.push({
         dia: nombreDia,
-        fecha: fecha.format('D'), // 'D' para el número del día del mes
-      };
-    });
-    this.diasSemana.forEach((dia, indexDia) => {
-      this.bloquesHorarios.dias[indexDia] = { dia: dia, horas: [] };
-      for (let i = 0; i < 24; i++) {
-        this.bloquesHorarios.dias[indexDia].horas.push({
-          hora: i,
-          citas: [],
-        });
-      }
-    });
+        fecha: fecha.format('D'),
+      });
+    }
+
+    this.bloquesHorarios.dias = this.diasDeLaSemana.map((dia) => ({
+      dia: dia.dia,
+      horas: Array.from({ length: 13 }, (_, i) => ({
+        hora: i + 8,
+        citas: [],
+      })),
+    }));
   }
 
   loadCitas(): void {
@@ -135,24 +150,17 @@ export class CentrosAgendaComponent {
   }
 
   organizarCitas(citas: Citas[]): void {
+    const fechaInicioSemana = this.currentDate.clone().startOf('isoWeek');
+    const fechaFinSemana = this.currentDate.clone().endOf('isoWeek');
     citas.forEach((cita) => {
       const fechaCita = moment(cita.fecha);
-      console.log('Fecha de la cita', fechaCita);
-      const fechaCitaFormat = fechaCita.format('YYYY-MM-DD'); // Formato 'YYYY-MM-DD' para comparación de fecha
-      const fechaInicioSemana = this.currentDate.clone().startOf('isoWeek'); // Ajuste para usar inicio de semana según ISO (lunes como primer día)
 
-      // Verifica si la fecha de la cita está dentro de la semana actual
-      if (
-        fechaCitaFormat >= fechaInicioSemana.format('YYYY-MM-DD') &&
-        fechaCitaFormat <=
-          fechaInicioSemana.clone().endOf('isoWeek').format('YYYY-MM-DD') // Ajuste para usar fin de semana según ISO
-      ) {
-        let diaSemana = fechaCita.isoWeekday(); // Ajuste para obtener el día de la semana según ISO (lunes = 1, domingo = 7)
-        diaSemana = diaSemana - 1; // Ajuste para alinear con el índice de array (lunes = 0, domingo = 6)
-
+      if (fechaCita.isBetween(fechaInicioSemana, fechaFinSemana, 'day', '[]')) {
+        let diaSemana = fechaCita.isoWeekday() - 1;
         let horaCita = fechaCita.hour();
+
         if (horaCita >= 8 && horaCita <= 20) {
-          horaCita -= 8; // Ajuste para alinear con el rango de horas
+          horaCita -= 8;
           this.bloquesHorarios.dias[diaSemana].horas[horaCita].citas.push(cita);
         }
       }

@@ -1,18 +1,48 @@
-<!-- <app-header></app-header> -->
-<div class="container">
-  <!-- Navegación de Semana y Mes Actual -->
-  <div class="week-navigation">
-    <button (click)="goToPreviousWeek()">Semana Anterior</button>
-    <span>{{ currentMonth }}</span>
-    <button (click)="goToNextWeek()">Semana Siguiente</button>
-  </div>
+<app-header class="poppins-regular"></app-header>
+<div class="main-content">
+<app-center-bar class="poppins-regular"></app-center-bar>
+<p class="bienvenido">
+  Bienvenido, <span>{{ nombreCentro }}</span>
+</p>
+<div class="title-container">
+  <h1 class="title">AGENDA</h1>
+</div>
+<div class="week-navigation">
+  <button (click)="goToPreviousWeek()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_1343_26)">
+    <path d="M17.51 3.87001L15.73 2.10001L5.83997 12L15.74 21.9L17.51 20.13L9.37997 12L17.51 3.87001Z" fill="#D63484"/>
+    </g>
+    <defs>
+    <clipPath id="clip0_1343_26">
+    <rect width="24" height="24" fill="white"/>
+    </clipPath>
+    </defs>
+    </svg>
+    </button>
+  <span class="mes">{{ currentMonth }}</span>
+  <button (click)="goToNextWeek()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_1343_30)">
+    <path d="M6.48999 3.87L8.25999 2.09999L18.16 12L8.25999 21.9L6.48999 20.13L14.62 12L6.48999 3.87Z" fill="#D63484"/>
+    </g>
+    <defs>
+    <clipPath id="clip0_1343_30">
+    <rect width="24" height="24" fill="white" transform="matrix(1 0 0 -1 0 24)"/>
+    </clipPath>
+    </defs>
+    </svg>
+    </button>
+</div>
 
+<div class="container container-table">
+  
   <table class="table">
     <thead>
       <tr>
-        <th>Horas</th>
-        <!-- Modificación aquí para incluir el número del día -->
-        <th *ngFor="let dia of diasDeLaSemana">{{ dia.dia }} {{ dia.fecha }}</th>
+        <th></th>
+        <th *ngFor="let dia of diasDeLaSemana; let i = index"
+    [ngClass]="{ 'current-day': isCurrentDay(dia.fecha), 'current-day-highlight': isCurrentDay(dia.fecha) }">
+  {{ dia.dia }} {{ dia.fecha }}
+</th>
       </tr>
     </thead>
     <tbody>
@@ -20,10 +50,11 @@
         <td>{{ formatHour(hora) }}</td>
         <td *ngFor="let dia of bloquesHorarios.dias" [ngClass]="{'cita-bloque': dia.horas[i].citas.length > 0}">
           <div *ngFor="let cita of dia.horas[i].citas">
-            {{ cita.descripcion }} <!-- Asumiendo que las citas tienen una descripción -->
+            {{ cita.servicio }}
           </div>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
 </div>

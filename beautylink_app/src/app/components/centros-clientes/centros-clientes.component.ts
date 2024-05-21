@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { Clientes } from '../../models/clientes.interface';
 import { CentrosClientesService } from '../../services/centros-clientes.service';
 import { HttpClient } from '@angular/common/http';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
 
 @Component({
   selector: 'app-centros-clientes',
@@ -16,12 +17,15 @@ import { HttpClient } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    CenterBarComponent,
   ],
   templateUrl: './centros-clientes.component.html',
   styleUrl: './centros-clientes.component.css',
 })
 export class CentrosClientesComponent {
   clientes: Clientes[] = [];
+  nombreCentro: string | null = '';
+
   constructor(
     private centrosClientesService: CentrosClientesService,
     private http: HttpClient
@@ -29,6 +33,7 @@ export class CentrosClientesComponent {
 
   ngOnInit(): void {
     this.loadClientes();
+    this.nombreCentro = localStorage.getItem('nombre_centro');
   }
 
   loadClientes(): void {

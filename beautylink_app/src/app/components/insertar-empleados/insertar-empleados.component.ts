@@ -9,16 +9,35 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { HeaderComponent } from '../header/header.component';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-insertar-empleados',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgFor],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    HeaderComponent,
+    CenterBarComponent,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatetimepickerModule,
+    NgxMaterialTimepickerModule,
+  ],
   templateUrl: './insertar-empleados.component.html',
   styleUrl: './insertar-empleados.component.css',
 })
 export class InsertarEmpleadosComponent {
   empleadosForm: FormGroup;
+  nombreCentro: string | null = '';
 
   private registerUrl = 'http://localhost:8000/empleados';
 
@@ -35,6 +54,7 @@ export class InsertarEmpleadosComponent {
       horario_inicio: '',
       horario_fin: '',
     });
+    this.nombreCentro = localStorage.getItem('nombre_centro');
   }
 
   register(user: any): Observable<any> {

@@ -95,9 +95,12 @@ class LoginClientesController extends AbstractController
         $user->setRoles(['ROLE_CLIENTE']);
         $clientId = $user->getId();
         $centroId = $user->getIdCentroCliente()->getId();
+        $nombreCliente = $user->getNombreCliente();
+        $apellidosCliente = $user->getApellidosCliente();
+        $emailCliente = $user->getEmailCliente();
 
         // Autenticación exitosa
-        return $this->json(['success' => true, 'clientId' => $clientId, 'centroId' => $centroId]);
+        return $this->json(['success' => true, 'clientId' => $clientId, 'centroId' => $centroId, 'nombre_cliente' => $nombreCliente, 'apellidos_cliente' => $apellidosCliente, 'email_cliente' => $emailCliente]);
     }
 
     private function checkPassword($user, $password): bool

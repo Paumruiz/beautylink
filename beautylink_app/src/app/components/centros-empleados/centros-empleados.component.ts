@@ -11,6 +11,12 @@ import { RouterLink } from '@angular/router';
 import { Empleados } from '../../models/empleados.interface';
 import { HttpClient } from '@angular/common/http';
 import { CentrosEmpleadosService } from '../../services/centros-empleados.service';
+import { CenterBarComponent } from '../center-bar/center-bar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-centros-empleados',
@@ -21,6 +27,12 @@ import { CentrosEmpleadosService } from '../../services/centros-empleados.servic
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    CenterBarComponent,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatetimepickerModule,
+    NgxMaterialTimepickerModule,
   ],
   templateUrl: './centros-empleados.component.html',
   styleUrl: './centros-empleados.component.css',
@@ -30,6 +42,7 @@ export class CentrosEmpleadosComponent {
   editMode: boolean = false;
   empleadosForm: FormGroup;
   empleadosToEdit: any;
+  nombreCentro: string | null = '';
 
   constructor(
     private centrosEmpleadosService: CentrosEmpleadosService,
@@ -49,6 +62,7 @@ export class CentrosEmpleadosComponent {
   ngOnInit(): void {
     this.loadEmpleados();
     this.initForm();
+    this.nombreCentro = localStorage.getItem('nombre_centro');
   }
 
   loadEmpleados(): void {

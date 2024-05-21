@@ -1,0 +1,136 @@
+.main-content{
+    margin-left: 350px;
+  }
+  
+  table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-container th,
+  .table-container td {
+    border-bottom: 1px solid #F0F0F0;
+    padding: 8px;
+  }
+  
+  /* Estilos para las celdas de cabecera */
+  .table-container th {
+    text-align: left;
+  }
+  
+  /* Estilos para las celdas de datos */
+  .table-container td {
+    text-align: left;
+  }
+  
+  
+  /* Estilos para el formulario de edición de citas */
+
+  
+  
+  .main-content{
+    margin-left: 350px;
+    margin-right: 60px;
+  }
+  
+  .bienvenido{
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+  
+  .bienvenido span{
+   color: #D63484;
+  }
+  
+  .title{
+    padding: 24px 0px;
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  
+  /* Estilos para la tabla */
+  table {
+    border-collapse: collapse; /* Elimina los espacios entre las celdas */
+    width: 100%; /* Opcional: hace que la tabla ocupe el 100% del ancho del contenedor */
+  }
+  
+  th,
+  td {
+    border: none; /* Elimina todos los bordes de las celdas */
+    padding: 8px; /* Ajusta el espaciado interno de las celdas */
+  }
+  
+  /* Estilos para la fila de encabezado (thead) */
+  thead {
+    background-color: #F0F0F0; /* Color de fondo gris */
+  }
+  
+  /* Estilos para las celdas del cuerpo de la tabla (tbody) */
+  tbody {
+    background-color: white; /* Color de fondo blanco */
+  }
+  
+  /* Estilos para las filas impares del cuerpo de la tabla */
+  
+  
+  /* Estilos para las filas pares del cuerpo de la tabla */
+  tbody tr {
+    background-color: white; /* Color de fondo blanco para las filas pares */
+  }
+  
+  button{
+    border: none;
+    background-color: white;
+  }
+  
+  .poppins-regular {
+    margin: 0;
+    text-align: left;
+    width: calc(50% - 120px);
+    margin-right: 60px;
+    box-sizing: border-box;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    color: #D63484;
+  }
+  
+  .form-control {
+    height: 2em;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+  }
+  
+  .form-control:hover {
+    border-left: 4px solid #D63484;
+  }
+  
+  .act {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .act-primary {
+    background-color: #D63484;
+    color: #fff;
+    border: 1px solid #D63484;
+  }
+
+  .hideIcon{
+    display: none;
+  }

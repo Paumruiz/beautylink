@@ -1,16 +1,27 @@
-<form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="servicio">Servicio:</label>
-        <select formControlName="servicio" id="servicio">
-            <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
-        </select>
-    </div>
-    <div>
-        <label for="empleado">Empleado:</label>
-        <select formControlName="empleado" id="empleado">
-            <option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre }}</option>
-        </select>
-    </div>
-    <input type="text" formControlName="fecha" placeholder="Fecha de la Cita">
-    <button type="submit">Insertar Cita</button>
-  </form>
+<app-sidebar-header class="poppins-regular"></app-sidebar-header>
+<div class="main-content">
+    <app-client-bar class="poppins-regular"></app-client-bar>
+   <!--  <p class="bienvenido">Bienvenido, <span>{{ nombreCliente}} {{apellidosCliente}}</span></p> -->
+    <h1 class="title">RESERVAR</h1>
+    <form [formGroup]="citaForm" (ngSubmit)="onSubmit()" class="poppins-regular">
+        <div class="form-group">
+            <label class="form-label" for="servicio">Servicio:</label>
+            <select formControlName="servicio" id="servicio" class="form-control">
+                <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="empleado">Empleado:</label>
+            <select formControlName="empleado" id="empleado" class="form-control">
+                <option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="fecha">Fecha y Hora de la Cita:</label>
+            <input matInput [matDatetimepicker]="pickerFechaHora" formControlName="fecha" id="fecha" class="form-control" (click)="pickerFechaHora.open()">
+            <mat-datetimepicker-toggle matSuffix [for]="pickerFechaHora" class="hideIcon"></mat-datetimepicker-toggle>
+            <mat-datetimepicker #pickerFechaHora type="datetime"></mat-datetimepicker>
+        </div>
+        <button type="submit" class="act act-primary">Insertar Cita</button>
+    </form>
+</div>

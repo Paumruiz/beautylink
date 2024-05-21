@@ -144,7 +144,7 @@
     border: 1px solid #D63484;
   }
 
-
+  
   .pickerInput{
     height: 2em;
     width: 100%;
@@ -159,3 +159,7 @@
     display: none;
   }
 
+  .hideIcon{
+    display: none;
+
+  }
