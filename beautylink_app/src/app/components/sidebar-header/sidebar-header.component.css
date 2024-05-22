@@ -25,15 +25,13 @@
     padding-bottom: 24px;
 }
 
-/* Estilos para la barra lateral */
 .sidebar-header {
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 250px; /* Ajusta el ancho según tus preferencias */
+  width: 250px;
 }
 
-/* Estilos para el enlace principal */
 .beautylink {
   color: #402b3a;
   font-size: 30px;
@@ -47,7 +45,6 @@
   text-decoration: none;
 }
 
-/* Estilos para la navegación */
 nav ul {
   list-style: none;
   padding: 0;
@@ -73,5 +70,9 @@ nav ul li a:hover {
 
 nav ul li a svg {
   vertical-align: middle;
-  margin-right: 10px; /* Ajusta el margen entre el SVG y el texto si es necesario */
+  margin-right: 10px;
+}
+
+.active{
+  font-weight: bold;
 }

@@ -67,7 +67,7 @@ export class InsertarCitaCentroComponent {
 
   idCentro = localStorage.getItem('idCentro');
   private empleadosUrl = `http://localhost:8000/empleados/${this.idCentro}`;
-  private serviciosUrl = 'http://localhost:8000/servicios'; // Asegúrate de tener este endpoint en tu backend
+  private serviciosUrl = 'http://localhost:8000/servicios';
   private clientesUrl = `http://localhost:8000/clientes/${this.idCentro}`;
 
   cargarServicios(): void {
@@ -111,7 +111,6 @@ export class InsertarCitaCentroComponent {
           )
         );
 
-        // Replace the 'fecha' field in the form with the UTC date
         this.citaForm.patchValue({ fecha: fechaHoraUTC });
 
         this.register(this.citaForm.value).subscribe({

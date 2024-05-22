@@ -47,14 +47,12 @@ class CitasController extends AbstractController
     #[Route('/client-dashboard/{id}', name: 'app_citas_client', methods: ['GET'])]
     public function showByClientId(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        // Obtener el cliente por su ID
         $cliente = $entityManager->getRepository(Clientes::class)->find($id);
 
         if (!$cliente) {
             return new JsonResponse(['error' => 'Cliente no encontrado'], Response::HTTP_NOT_FOUND);
         }
 
-        // Obtener las citas asociadas a ese cliente
         $citas = $cliente->getClienteCita()->toArray();
 
         if (empty($citas)) {
@@ -134,9 +132,6 @@ class CitasController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        //$citaData = $data['cita'];
-
-        // Recuperar entidades relacionadas (servicio, cliente, empleado, centro)
         $servicio = $entityManager->getRepository(Servicios::class)->find($data['servicio']);
         $cliente = $entityManager->getRepository(Clientes::class)->find($data['cliente']);
         $empleado = $entityManager->getRepository(Empleados::class)->find($data['empleado']);
@@ -162,39 +157,23 @@ class CitasController extends AbstractController
 
         $citaData = $data['cita'];
 
-        // Recuperar la cita existente por su ID
         $citaEntity = $entityManager->getRepository(Citas::class)->find($id);
 
         if (!$citaEntity) {
             return new JsonResponse(['error' => 'Cita no encontrada'], Response::HTTP_NOT_FOUND);
         }
 
-        // Actualizar las propiedades de la cita con los nuevos datos
-        /*      if (isset($citaData['servicio'])) {
-            $servicio = $entityManager->getRepository(Servicios::class)->find($citaData['servicio']);
-            $citaEntity->setServicioCita($servicio);
-        }
-
-        if (isset($citaData['empleado'])) {
-            $empleado = $entityManager->getRepository(Empleados::class)->find($citaData['empleado']);
-            $citaEntity->setEmpleadoCita($empleado);
-        } */
-
         if (isset($citaData['servicio'])) {
-            // Buscar el servicio por nombre
             $servicio = $entityManager->getRepository(Servicios::class)->findOneByNombre($citaData['servicio']);
             if (!$servicio) {
-                // Manejar el caso en que el servicio no se encuentra
                 return new JsonResponse(['error' => 'Servicio no encontrado.'], Response::HTTP_NOT_FOUND);
             }
             $citaEntity->setServicioCita($servicio);
         }
 
         if (isset($citaData['empleado'])) {
-            // Buscar el empleado por nombre
             $empleado = $entityManager->getRepository(Empleados::class)->findOneByNombre($citaData['empleado']);
             if (!$empleado) {
-                // Manejar el caso en que el empleado no se encuentra
                 return new JsonResponse(['error' => 'Empleado no encontrado.'], Response::HTTP_NOT_FOUND);
             }
             $citaEntity->setEmpleadoCita($empleado);
@@ -222,27 +201,15 @@ class CitasController extends AbstractController
     #[Route('/citas/{id}', name: 'app_eliminar_cita', methods: ['DELETE'])]
     public function deleteCita(EntityManagerInterface $entityManager, $id): JsonResponse
     {
-        // Recuperar la cita existente por su ID
         $citaEntity = $entityManager->getRepository(Citas::class)->find($id);
 
         if (!$citaEntity) {
             return new JsonResponse(['error' => 'Cita no encontrada'], Response::HTTP_NOT_FOUND);
         }
 
-        // Eliminar la cita
         $entityManager->remove($citaEntity);
         $entityManager->flush();
 
         return new JsonResponse(['status' => 'Cita eliminada correctamente'], Response::HTTP_OK);
     }
 }
-
-/* {
-    "cita": {
-        "servicio": 1,
-        "cliente": 1,
-        "empleado": 1,
-        "centro": 1,
-        "fecha": "2024-01-01 00:00:00"
-    }
-} */

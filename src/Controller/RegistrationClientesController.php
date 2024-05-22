@@ -15,47 +15,6 @@ use App\Repository\CentrosRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-/* class RegistrationClientesController extends AbstractController
-{
-    #[Route('/test', name: 'test')]
-    public function main()
-    {
-        return $this->render(view: 'base.html.twig');
-    }
-
-    #[Route('/register_clientes', name: 'app_register_clientes')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
-        $user = new Clientes();
-        $centros = $entityManager->getRepository(Centros::class)->findAll();
-
-        $form = $this->createForm(RegistrationClientesFormType::class, $user, [
-            'centros' => $centros,
-        ]);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $user->setPassword($form->get('plainPassword')->getData());
-            $user->setNombreCliente($form->get('nombre_cliente')->getData());
-            $user->setApellidosCliente($form->get('apellidos_cliente')->getData());
-            $user->setTelefonoCliente($form->get('telefono_cliente')->getData());
-            $user->setIdCentroCliente($form->get('id_centro')->getData());
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute(route: 'test');
-        }
-
-        return $this->render('registration_clientes/index.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
-    }
-}
- */
-
 class RegistrationClientesController extends AbstractController
 {
 
@@ -65,9 +24,6 @@ class RegistrationClientesController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
-        /*   if (!isset($data['id_centro']) || !is_numeric($data['id_centro'])) {
-            return new JsonResponse(['error' => 'Invalid or missing id_centro'], Response::HTTP_BAD_REQUEST);
-        } */
         $centrosRepository = $entityManager->getRepository(Centros::class);
 
         $cliente = new Clientes();
@@ -80,9 +36,6 @@ class RegistrationClientesController extends AbstractController
         $centro = $centrosRepository->find($data['id_centro']);
         $cliente->setIdCentroCliente($centro);
 
-
-
-        //$cliente->setIdCentroCliente($data['id_centro']);
         $errors = $validator->validate($cliente);
         if (count($errors) > 0) {
             $errorsArray = [];

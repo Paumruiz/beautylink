@@ -1,7 +1,7 @@
 .info-centro {
     position: fixed;
-    top: 40px; /* Ajusta la distancia desde la parte superior de la pantalla */
-    right: 12em; /* Ajusta la distancia desde el borde derecho de la pantalla */
+    top: 40px; 
+    right: 12em; 
     border-left: 1px solid #D63484;
     padding-left: 20px;
   }
@@ -26,6 +26,6 @@
 }
 
 .info-centro p {
-    margin-top: 5px; /* Espacio entre el título y el párrafo */
+    margin-top: 5px; 
 }
 

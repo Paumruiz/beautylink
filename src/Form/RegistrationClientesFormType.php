@@ -28,8 +28,8 @@ class RegistrationClientesFormType extends AbstractType
             ->add('id_centro', EntityType::class, [
                 'class' => Centros::class,
                 'mapped' => false,
-                'choice_label' => 'nombre_centro', // o cualquier propiedad que quieras mostrar
-                'placeholder' => 'Selecciona un centro', // texto por defecto
+                'choice_label' => 'nombre_centro',
+                'placeholder' => 'Selecciona un centro',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -40,8 +40,7 @@ class RegistrationClientesFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -51,7 +50,6 @@ class RegistrationClientesFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
@@ -62,7 +60,7 @@ class RegistrationClientesFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Clientes::class,
-            'centros' => [], // Definimos la opción 'centros' con un valor por defecto de un array vacío
+            'centros' => [],
         ]);
     }
 }

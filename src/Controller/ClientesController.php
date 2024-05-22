@@ -48,7 +48,6 @@ class ClientesController extends AbstractController
         $cliente->setEmailCliente($data['email']);
         $cliente->setTelefonoCliente($data['telefono']);
         $cliente->setPassword($data['password']);
-        // Asume que id_centro es enviado en la petición. Asegúrate de validar y establecer relaciones correctamente.
         $cliente->setIdCentroCliente($centro);
 
         $entityManager->persist($cliente);

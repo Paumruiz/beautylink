@@ -114,7 +114,7 @@ export class CentrosEmpleadosComponent {
         .subscribe({
           next: (response) => {
             console.log('Empleado actualizado correctamente', response);
-            this.loadEmpleados(); // Actualiza la lista de citas después de la actualización
+            this.loadEmpleados();
             this.cancelEditMode();
           },
           error: (error) =>
@@ -130,13 +130,12 @@ export class CentrosEmpleadosComponent {
   }
 
   eliminarEmpleado(id: number) {
-    const url = `http://localhost:8000/empleados/${id}`; // Asegúrate de que la URL coincida con tu API
+    const url = `http://localhost:8000/empleados/${id}`;
     if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
-      // Opcional: Diálogo de confirmación
       this.http.delete(url).subscribe({
         next: (response) => {
           console.log('Empleado eliminado correctamente', response);
-          this.loadEmpleados(); // Actualiza la lista de citas después de la eliminación
+          this.loadEmpleados();
         },
         error: (error) => console.error('Error al eliminar el empleado', error),
       });

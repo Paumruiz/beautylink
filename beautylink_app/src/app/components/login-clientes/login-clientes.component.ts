@@ -23,7 +23,7 @@ export class LoginClientesComponent {
     password_cliente: '',
   };
 
-  showError = false; // Variable de bandera para controlar si se muestra el aviso de credenciales incorrectas
+  showError = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,24 +33,21 @@ export class LoginClientesComponent {
       .subscribe(
         (response) => {
           console.log('Respuesta del servidor:', response);
-          // Aquí puedes manejar la respuesta del servidor, redireccionar, etc.
           if (response.success) {
-            // Suponiendo que el servidor responde con un objeto JSON que contiene una clave 'success' que indica si el inicio de sesión fue exitoso
-            localStorage.setItem('idCliente', response.clientId); // Guarda la id del cliente en el localStorage
-            localStorage.setItem('idCentro', response.centroId); // Guarda la id del cliente en el localStorage
+            localStorage.setItem('idCliente', response.clientId);
+            localStorage.setItem('idCentro', response.centroId);
             localStorage.setItem('nombre_cliente', response.nombre_cliente);
             localStorage.setItem(
               'apellidos_cliente',
               response.apellidos_cliente
             );
             localStorage.setItem('email_cliente', response.email_cliente);
-            this.router.navigate(['/client-dashboard']); // Redirecciona a la ruta centros-dashboard
+            this.router.navigate(['/client-dashboard']);
           }
         },
         (error) => {
           console.error('Error en la solicitud:', error);
           if (error.status === 400) {
-            // Mostrar el aviso de credenciales incorrectas si la respuesta del servidor es un Bad Request (400)
             this.showError = true;
             this.router.navigate(['/login-clientes']);
             console.log('credenciales incorrectas');

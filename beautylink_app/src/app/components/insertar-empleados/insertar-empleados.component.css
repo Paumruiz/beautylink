@@ -13,19 +13,13 @@
     padding: 8px;
   }
   
-  /* Estilos para las celdas de cabecera */
   .table-container th {
     text-align: left;
   }
   
-  /* Estilos para las celdas de datos */
   .table-container td {
     text-align: left;
   }
-  
-  
-  /* Estilos para el formulario de edición de citas */
-
   
   
   .main-content{
@@ -51,35 +45,27 @@
     margin: 0;
   }
   
-  
-  /* Estilos para la tabla */
   table {
-    border-collapse: collapse; /* Elimina los espacios entre las celdas */
-    width: 100%; /* Opcional: hace que la tabla ocupe el 100% del ancho del contenedor */
+    border-collapse: collapse; 
+    width: 100%; 
   }
   
   th,
   td {
-    border: none; /* Elimina todos los bordes de las celdas */
-    padding: 8px; /* Ajusta el espaciado interno de las celdas */
+    border: none; 
+    padding: 8px; 
   }
   
-  /* Estilos para la fila de encabezado (thead) */
   thead {
-    background-color: #F0F0F0; /* Color de fondo gris */
+    background-color: #F0F0F0; 
   }
   
-  /* Estilos para las celdas del cuerpo de la tabla (tbody) */
   tbody {
-    background-color: white; /* Color de fondo blanco */
-  }
+    background-color: white; 
+  }  
   
-  /* Estilos para las filas impares del cuerpo de la tabla */
-  
-  
-  /* Estilos para las filas pares del cuerpo de la tabla */
   tbody tr {
-    background-color: white; /* Color de fondo blanco para las filas pares */
+    background-color: white; 
   }
   
   button{
@@ -133,9 +119,9 @@
 
   .btn {
     padding: 5px 10px;
-    font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+    font-size: 18px; 
     font-family: 'Poppins', sans-serif; 
-    margin: 0 0 16px;/* Ajusta la fuente según tus preferencias */
+    margin: 0 0 16px;
   }
   
   .btn-primary {
@@ -159,3 +145,7 @@
     display: none;
   }
 
+  .btn:hover{
+    background-color: white;
+    color:  #D63484;
+  }

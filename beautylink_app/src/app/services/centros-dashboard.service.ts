@@ -5,7 +5,7 @@ import { Citas } from '../models/citas.interface';
 
 export interface CitasResponse {
   num_citas: number;
-  citas: Citas[]; // Ajusta según sea necesario
+  citas: Citas[];
 }
 
 @Injectable({

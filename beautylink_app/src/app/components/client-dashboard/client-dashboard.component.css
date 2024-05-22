@@ -9,18 +9,14 @@
   padding: 8px;
 }
 
-/* Estilos para las celdas de cabecera */
 .table-container th {
   text-align: left;
 }
 
-/* Estilos para las celdas de datos */
 .table-container td {
   text-align: left;
 }
 
-
-/* Estilos para el formulario de edición de citas */
 .poppins-regular h3 {
   font-weight: bold;
 }
@@ -45,6 +41,7 @@
 .main-content{
   margin-left: 350px;
   margin-right: 60px;
+  margin-bottom: 5em;
 }
 
 .bienvenido{
@@ -64,35 +61,27 @@
   font-weight: bold;
 }
 
-
-/* Estilos para la tabla */
 table {
-  border-collapse: collapse; /* Elimina los espacios entre las celdas */
-  width: 100%; /* Opcional: hace que la tabla ocupe el 100% del ancho del contenedor */
+  border-collapse: collapse; 
+  width: 100%; 
 }
 
 th,
 td {
-  border: none; /* Elimina todos los bordes de las celdas */
-  padding: 8px; /* Ajusta el espaciado interno de las celdas */
+  border: none; 
+  padding: 8px; 
 }
 
-/* Estilos para la fila de encabezado (thead) */
 thead {
-  background-color: #F0F0F0; /* Color de fondo gris */
+  background-color: #F0F0F0; 
 }
 
-/* Estilos para las celdas del cuerpo de la tabla (tbody) */
 tbody {
-  background-color: white; /* Color de fondo blanco */
+  background-color: white; 
 }
 
-/* Estilos para las filas impares del cuerpo de la tabla */
-
-
-/* Estilos para las filas pares del cuerpo de la tabla */
 tbody tr {
-  background-color: white; /* Color de fondo blanco para las filas pares */
+  background-color: white;
 }
 
 button{
@@ -120,7 +109,6 @@ button{
 }
 
 .form-control {
-  height: 2em;
   width: 100%;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -147,6 +135,8 @@ button{
   display: none;
 }
 
-.table-container{
-  padding-bottom: 5em;
+.editar-btn:hover svg,
+.eliminar-btn:hover svg {
+    stroke: #D63484;
+    fill: #D63484; 
 }

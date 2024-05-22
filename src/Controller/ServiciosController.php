@@ -39,16 +39,13 @@ class ServiciosController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        // Crear una nueva instancia de la entidad Servicios
         $servicioEntity = new Servicios();
 
-        // Configurar los datos del servicio
         $servicioEntity->setNombreServicio($data['nombre']);
         $servicioEntity->setDescripcionServicio($data['descripcion']);
         $servicioEntity->setDuracionServicio($data['duracion']);
         $servicioEntity->setPrecioServicio($data['precio']);
 
-        // Persistir la entidad
         $entityManager->persist($servicioEntity);
         $entityManager->flush();
 
@@ -60,14 +57,12 @@ class ServiciosController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        // Buscar el servicio en la base de datos
         $servicioEntity = $entityManager->getRepository(Servicios::class)->find($id);
 
         if (!$servicioEntity) {
             return new JsonResponse(['error' => 'El servicio no existe'], Response::HTTP_NOT_FOUND);
         }
 
-        // Actualizar los datos del servicio
         if (isset($data['nombre'])) {
             $servicioEntity->setNombreServicio($data['nombre']);
         }
@@ -81,7 +76,6 @@ class ServiciosController extends AbstractController
             $servicioEntity->setPrecioServicio($data['precio']);
         }
 
-        // Persistir los cambios
         $entityManager->flush();
 
         return new JsonResponse(['status' => 'Servicio actualizado correctamente'], Response::HTTP_OK);
@@ -90,14 +84,12 @@ class ServiciosController extends AbstractController
     #[Route('/servicios/{id}', name: 'app_servicios_delete', methods: ['DELETE'])]
     public function deleteServicio(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        // Buscar el servicio en la base de datos
         $servicioEntity = $entityManager->getRepository(Servicios::class)->find($id);
 
         if (!$servicioEntity) {
             return new JsonResponse(['error' => 'El servicio no existe'], Response::HTTP_NOT_FOUND);
         }
 
-        // Eliminar el servicio
         $entityManager->remove($servicioEntity);
         $entityManager->flush();
 

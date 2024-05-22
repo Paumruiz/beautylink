@@ -23,7 +23,7 @@ export class LoginCentrosComponent {
     password_centro: '',
   };
 
-  showError = false; // Variable de bandera para controlar si se muestra el aviso de credenciales incorrectas
+  showError = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,18 +33,16 @@ export class LoginCentrosComponent {
       .subscribe(
         (response) => {
           console.log('Respuesta del servidor:', response);
-          // Aquí puedes manejar la respuesta del servidor, redireccionar, etc.
           if (response.success) {
-            localStorage.setItem('idCentro', response.centroId); // Suponiendo que el servidor responde con un objeto JSON que contiene una clave 'success' que indica si el inicio de sesión fue exitoso
+            localStorage.setItem('idCentro', response.centroId);
             localStorage.setItem('nombre_centro', response.nombre_centro);
             localStorage.setItem('email_centro', response.email_centro);
-            this.router.navigate(['/centros-dashboard']); // Redirecciona a la ruta centros-dashboard
+            this.router.navigate(['/centros-dashboard']);
           }
         },
         (error) => {
           console.error('Error en la solicitud:', error);
           if (error.status === 400) {
-            // Mostrar el aviso de credenciales incorrectas si la respuesta del servidor es un Bad Request (400)
             this.showError = true;
             this.router.navigate(['/login-centros']);
             console.log('credenciales incorrectas');

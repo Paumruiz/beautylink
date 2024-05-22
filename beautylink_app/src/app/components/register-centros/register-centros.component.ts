@@ -21,20 +21,13 @@ import { Router } from '@angular/router';
 export class RegisterCentrosComponent {
   registerForm: FormGroup;
 
-  private registerUrl = 'http://localhost:8000/register'; // Ajusta esto a la URL de tu API
+  private registerUrl = 'http://localhost:8000/register';
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
   ) {
-    /* this.registerForm = this.fb.group({
-      nombre_centro: ['', Validators.required],
-      direccion_centro: ['', Validators.required],
-      telefono_centro: ['', Validators.required],
-      email_centro: ['', [Validators.required, Validators.email]],
-      password_centro: ['', Validators.required],
-    }); */
     this.registerForm = this.fb.group({
       nombre_centro: '',
       direccion_centro: '',
@@ -55,7 +48,6 @@ export class RegisterCentrosComponent {
       this.register(this.registerForm.value).subscribe({
         next: (response) => {
           console.log('Registro exitoso', response);
-          // Redirigir a la ruta login-centros después del registro exitoso
           this.router.navigate(['/login-centros']);
         },
         error: (error) => console.error('Error en el registro', error),

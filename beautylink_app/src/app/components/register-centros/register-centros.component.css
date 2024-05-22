@@ -1,10 +1,10 @@
 .login-container {
     margin: 0;
     text-align: left;
-    width: calc(50% - 120px); /* Ajusta el ancho según tus preferencias */
+    width: calc(50% - 120px); 
     padding: 4em;
-    margin-right: 60px; /* Ajusta el margen derecho según tus preferencias */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    margin-right: 60px; 
+    box-sizing: border-box; 
   }
   
   .form-group {
@@ -22,8 +22,8 @@
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    font-size: 16px; /* Ajusta el tamaño de la fuente según tus preferencias */
-    font-family: 'Poppins', sans-serif; /* Ajusta la fuente según tus preferencias */
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif; 
   }
   
   .form-control:hover {
@@ -31,14 +31,14 @@
   }
   
   .buttons-div {
-    white-space: nowrap; /* Prevent line break */
+    white-space: nowrap; 
     padding: 18px 0px;
   }
   
   .btn {
     padding: 10px 20px;
-    font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
-    font-family: 'Poppins', sans-serif; /* Ajusta la fuente según tus preferencias */
+    font-size: 18px; 
+    font-family: 'Poppins', sans-serif; 
   }
   
   .btn-primary {
@@ -63,23 +63,23 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: 50%; /* ajusta el ancho según tus preferencias */
-    background-color: #ffffff; /* color de fondo gris */
+    width: 50%; 
+    background-color: #ffffff; 
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
-    justify-content: center; /* Centra horizontalmente los elementos */
-    padding: 20px; /* Añade un padding para separar el contenido del borde */
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
   }
   
   .center-image {
     display: block;
-    max-width: 75%; /* Ajusta el tamaño máximo de la imagen */
+    max-width: 75%; 
     height: auto;
-    margin: 0 auto; /* Centra la imagen horizontalmente */
+    margin: 0 auto; 
   }
   
   .center-text {
-    text-align: center; /* Centra el texto horizontalmente */
+    text-align: center;
     font-size: 30px;
     font-family: Poppins;
     font-weight: bold;

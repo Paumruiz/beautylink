@@ -16,12 +16,12 @@ interface BloqueHorario {
 
 interface BloquesHorarios {
   dias: BloqueHorario[];
-  horas: string[]; // Asumiendo que quieres mostrar las horas como strings
+  horas: string[];
 }
 
 interface Hora {
   hora: number;
-  citas: any[]; // Replace 'any' with the actual type of your citas
+  citas: any[];
 }
 
 interface Dia {
@@ -83,16 +83,15 @@ export class CentrosAgendaComponent {
   }
 
   goToNextWeek(): void {
-    // Asume que currentDate es un objeto moment. Ajusta según tu implementación.
-    this.currentDate.add(7, 'days'); // Avanza currentDate una semana.
-    this.inicializarBloquesHorarios(); // Recalcula los días de la semana basado en la nueva currentDate.
-    this.loadCitas(); // Carga las citas para la nueva semana, si es necesario.
+    this.currentDate.add(7, 'days');
+    this.inicializarBloquesHorarios();
+    this.loadCitas();
   }
 
   goToPreviousWeek(): void {
-    this.currentDate.subtract(7, 'days'); // Retrocede currentDate una semana.
-    this.inicializarBloquesHorarios(); // Recalcula los días de la semana basado en la nueva currentDate.
-    this.loadCitas(); // Carga las citas para la nueva semana, si es necesario.
+    this.currentDate.subtract(7, 'days');
+    this.inicializarBloquesHorarios();
+    this.loadCitas();
   }
 
   get currentMonth(): string {
@@ -167,11 +166,10 @@ export class CentrosAgendaComponent {
     });
   }
   generateHours(): number[] {
-    // Genera horas solo de 8 a 20
     return Array.from({ length: 13 }, (_, i) => 8 + i);
   }
 
   formatHour(hour: number): string {
-    return `${hour}:00`; // Formato simple, ajusta según necesidad
+    return `${hour}:00`;
   }
 }

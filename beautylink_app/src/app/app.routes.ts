@@ -6,7 +6,6 @@ import { LoginClientesComponent } from './components/login-clientes/login-client
 import { CentrosDashboardComponent } from './components/centros-dashboard/centros-dashboard.component';
 import { RegisterCentrosComponent } from './components/register-centros/register-centros.component';
 import { RegisterClientesComponent } from './components/register-clientes/register-clientes.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ReservarCitaComponent } from './components/reservar-cita/reservar-cita.component';
 import { CentrosCitasComponent } from './components/centros-citas/centros-citas.component';
 import { CentrosClientesComponent } from './components/centros-clientes/centros-clientes.component';
@@ -29,9 +28,8 @@ export const routes: Routes = [
   { path: 'insertar-empleados', component: InsertarEmpleadosComponent },
   { path: 'register-centros', component: RegisterCentrosComponent },
   { path: 'register-clientes', component: RegisterClientesComponent },
-  { path: '404', component: NotfoundComponent },
   { path: '', redirectTo: 'login-clientes', pathMatch: 'full' },
-  { path: '**', redirectTo: '404' },
+  { path: '**', redirectTo: 'login-clientes' },
 ];
 
 @NgModule({

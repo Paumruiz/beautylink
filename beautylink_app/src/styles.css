@@ -108,19 +108,13 @@
     font-style: italic;
   }
 
-  
-/* Estilos para el contenido principal */
-
-  
-  /* Añade este estilo si deseas que el contenido principal ocupe el espacio restante verticalmente */
   .main-content {
-    box-sizing: border-box; /* Incluye el relleno y el borde en el alto y el ancho */
+    box-sizing: border-box; 
   }
   
-  /* Ajusta estos estilos si necesitas que el contenido principal tenga un ancho máximo */
   @media (min-width: 768px) {
     .main-content {
-      max-width: calc(100% - 250px); /* Ajusta el valor según el ancho de tu barra lateral */
+      max-width: calc(100% - 250px);
     }
   }
 

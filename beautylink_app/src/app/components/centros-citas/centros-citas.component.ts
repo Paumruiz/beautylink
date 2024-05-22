@@ -47,6 +47,8 @@ export class CentrosCitasComponent {
   nombreCliente: string | null = '';
   apellidosCliente: string | null = '';
   nombreCentro: string | null = '';
+  servicios: any[] = [];
+  empleados: any[] = [];
 
   constructor(
     private centrosCitasService: CentrosCitasService,
@@ -60,8 +62,28 @@ export class CentrosCitasComponent {
       centro: localStorage.getItem('idCentro'),
       fecha: '',
     });
+
+    this.cargarServicios();
+    this.cargarEmpleados();
   }
 
+  idCentro = localStorage.getItem('idCentro');
+  private empleadosUrl = `http://localhost:8000/empleados/${this.idCentro}`;
+  private serviciosUrl = 'http://localhost:8000/servicios';
+
+  cargarServicios(): void {
+    this.http.get<any[]>(this.serviciosUrl).subscribe({
+      next: (servicios) => (this.servicios = servicios),
+      error: (error) => console.error('Error al cargar servicios', error),
+    });
+  }
+
+  cargarEmpleados(): void {
+    this.http.get<any[]>(this.empleadosUrl).subscribe({
+      next: (empleados) => (this.empleados = empleados),
+      error: (error) => console.error('Error al cargar empleados', error),
+    });
+  }
   ngOnInit(): void {
     this.loadCitas();
     this.initForm();
@@ -105,7 +127,10 @@ export class CentrosCitasComponent {
   actualizarCita(): void {
     if (this.citaForm.valid) {
       let fechaControl = this.citaForm.get('fecha');
-      if (fechaControl) {
+      let empleadoControl = this.citaForm.get('empleado');
+      let servicioControl = this.citaForm.get('servicio');
+
+      if (fechaControl && empleadoControl && servicioControl) {
         let fechaHora: Date = fechaControl.value;
         let fechaHoraUTC = new Date(
           Date.UTC(
@@ -117,18 +142,22 @@ export class CentrosCitasComponent {
           )
         );
 
-        // Replace the 'fecha' field in the form with the UTC date
         this.citaForm.patchValue({ fecha: fechaHoraUTC });
 
+        this.citaForm.patchValue({ empleado: empleadoControl.value.id });
+        this.citaForm.patchValue({ servicio: servicioControl.value.id });
+
         const citaData = this.citaForm.value;
+        const citaId = this.citaToEdit.id;
+
         this.http
-          .patch(`http://localhost:8000/citas/${this.citaToEdit.id}`, {
+          .patch(`http://localhost:8000/citas/${citaId}`, {
             cita: citaData,
           })
           .subscribe({
             next: (response) => {
               console.log('Cita actualizada correctamente', response);
-              this.loadCitas(); // Actualiza la lista de citas después de la actualización
+              this.loadCitas();
               this.cancelEditMode();
             },
             error: (error) =>

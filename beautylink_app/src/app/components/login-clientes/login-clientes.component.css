@@ -11,23 +11,19 @@
     gap: 3em;
 }
 
-/* Estilos para mensajes de error */
 .error-message {
     color: red;
     margin-bottom: 10px;
 }
 
-/* Estilos para el formulario de inicio de sesión */
 .login-form {
     margin-top: 20px;
 }
 
-/* Estilos para los grupos de campos del formulario */
 .form-group {
     margin-bottom: 15px;
 }
 
-/* Estilos para los campos de entrada del formulario */
 .form-control {
     height: 2em;
     width: 100%;
@@ -39,7 +35,6 @@
     border-left: 4px solid #D63484;;
 }
 
-/* Estilos para los botones */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -51,12 +46,10 @@
     cursor: pointer;
 }
 
-/* Estilos para el botón de inicio de sesión principal */
 .btn-primary {
     background-color: #007bff;
 }
 
-/* Estilos para los enlaces de inicio de sesión alternativos */
 .btn-secondary {
     background-color: #6c757d;
     margin-right: 10px;
@@ -171,22 +164,22 @@ outline:none;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 50%; /* ajusta el ancho según tus preferencias */
-    background-color: #f2f2f2; /* color de fondo gris */
+    width: 50%; 
+    background-color: #f2f2f2; 
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
-    justify-content: center; /* Centra horizontalmente los elementos */
+    align-items: center; 
+    justify-content: center; 
 }
 
 .center-image {
     display: block;
-    max-width: 75%; /* Ajusta el tamaño máximo de la imagen */
+    max-width: 75%;
     height: auto;
-    margin: 0 auto; /* Centra la imagen horizontalmente */
+    margin: 0 auto; 
 }
 
 .center-text {
-    text-align: center; /* Centra el texto horizontalmente */
+    text-align: center; 
     font-size:30px;
     font-family:Poppins;
     font-weight: bold;
@@ -202,8 +195,8 @@ outline:none;
     border: 1px solid #D63484;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    display: inline-block; /* Display as inline-block */
-    margin-right: 10px; /* Add margin between buttons */
+    display: inline-block; 
+    margin-right: 10px; 
 }
 
 .btn-register {
@@ -215,7 +208,7 @@ outline:none;
     padding: 10px 20px;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    display: inline-block; /* Display as inline-block */
+    display: inline-block; 
 }
 
 .btn-register a{
@@ -224,7 +217,7 @@ outline:none;
 }
 
 .buttons-div {
-    white-space: nowrap; /* Prevent line break */
+    white-space: nowrap; 
     padding: 18px 0px;
 }
 
@@ -236,10 +229,10 @@ outline:none;
 .login-container {
   margin: 0;
   text-align: left;
-  width: calc(50% - 120px); /* Ajusta el ancho según tus preferencias */
+  width: calc(50% - 120px); 
   padding: 4em;
-  margin-right: 60px; /* Ajusta el margen derecho según tus preferencias */
-  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  margin-right: 60px; 
+  box-sizing: border-box; 
 }
 
 .vertical-grey {
@@ -247,12 +240,12 @@ outline:none;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 50%; /* ajusta el ancho según tus preferencias */
+  width: 50%; 
   background-color: #ffffff;
   display: flex;
-  align-items: center; /* Centra verticalmente los elementos */
-  justify-content: center; /* Centra horizontalmente los elementos */
-  padding: 20px; /* Añade un padding para separar el contenido del borde */
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px; 
 }
 
 

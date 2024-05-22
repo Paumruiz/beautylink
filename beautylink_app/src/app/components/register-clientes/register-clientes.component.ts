@@ -24,7 +24,7 @@ export class RegisterClientesComponent {
   centros: any[] = [];
 
   private registerUrl = 'http://localhost:8000/register_clientes';
-  private centrosUrl = 'http://localhost:8000/centros'; // Asegúrate de tener este endpoint en tu backend
+  private centrosUrl = 'http://localhost:8000/centros';
 
   constructor(
     private fb: FormBuilder,

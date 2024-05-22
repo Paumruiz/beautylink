@@ -44,7 +44,7 @@ export class ActualizarCitaComponent {
 
   idCentro = localStorage.getItem('idCentro');
   private empleadosUrl = `http://localhost:8000/empleados/${this.idCentro}`;
-  private serviciosUrl = 'http://localhost:8000/servicios'; // Asegúrate de tener este endpoint en tu backend
+  private serviciosUrl = 'http://localhost:8000/servicios';
 
   cargarServicios(): void {
     this.http.get<any[]>(this.serviciosUrl).subscribe({

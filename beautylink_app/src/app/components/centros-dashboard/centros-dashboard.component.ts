@@ -53,7 +53,7 @@ export class CentrosDashboardComponent {
       if (fechaExpiracion > new Date()) {
         this.totalIngresos = ingresosObj.total;
       } else {
-        localStorage.removeItem('totalIngresosData'); // Limpia el valor si ha expirado
+        localStorage.removeItem('totalIngresosData');
       }
     }
   }
@@ -68,7 +68,6 @@ export class CentrosDashboardComponent {
       if (idCentro !== null) {
         this.centrosDashboardService.getCitasById(idCentro).subscribe(
           (data: CitasResponse) => {
-            // Ajusta el tipo aquí
             this.citas = data.citas;
             this.num_citas = data.num_citas;
           },
@@ -89,9 +88,8 @@ export class CentrosDashboardComponent {
       return;
     }
 
-    const url = `http://localhost:8000/citas/${id}`; // Asegúrate de que la URL coincida con tu API
+    const url = `http://localhost:8000/citas/${id}`;
     if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
-      // Opcional: Diálogo de confirmación
       this.http.delete(url).subscribe({
         next: (response) => {
           console.log('Cita eliminada correctamente', response);
@@ -106,7 +104,7 @@ export class CentrosDashboardComponent {
             'totalIngresosData',
             JSON.stringify(ingresosData)
           );
-          this.loadCitas(); // Actualiza la lista de citas después de la eliminación
+          this.loadCitas();
         },
         error: (error) => console.error('Error al eliminar la cita', error),
       });

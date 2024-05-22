@@ -49,6 +49,8 @@ export class ClientDashboardComponent {
   citaToEdit: any;
   nombreCliente: string | null = '';
   apellidosCliente: string | null = '';
+  servicios: any[] = [];
+  empleados: any[] = [];
 
   constructor(
     private clientDashboardService: ClientDashboardService,
@@ -62,6 +64,27 @@ export class ClientDashboardComponent {
       empleado: '',
       centro: localStorage.getItem('idCentro'),
       fecha: '',
+    });
+
+    this.cargarServicios();
+    this.cargarEmpleados();
+  }
+
+  idCentro = localStorage.getItem('idCentro');
+  private empleadosUrl = `http://localhost:8000/empleados/${this.idCentro}`;
+  private serviciosUrl = 'http://localhost:8000/servicios';
+
+  cargarServicios(): void {
+    this.http.get<any[]>(this.serviciosUrl).subscribe({
+      next: (servicios) => (this.servicios = servicios),
+      error: (error) => console.error('Error al cargar servicios', error),
+    });
+  }
+
+  cargarEmpleados(): void {
+    this.http.get<any[]>(this.empleadosUrl).subscribe({
+      next: (empleados) => (this.empleados = empleados),
+      error: (error) => console.error('Error al cargar empleados', error),
     });
   }
 
@@ -109,7 +132,10 @@ export class ClientDashboardComponent {
   actualizarCita(): void {
     if (this.citaForm.valid) {
       let fechaControl = this.citaForm.get('fecha');
-      if (fechaControl) {
+      let empleadoControl = this.citaForm.get('empleado');
+      let servicioControl = this.citaForm.get('servicio');
+
+      if (fechaControl && empleadoControl && servicioControl) {
         let fechaHora: Date = fechaControl.value;
         let fechaHoraUTC = new Date(
           Date.UTC(
@@ -121,8 +147,10 @@ export class ClientDashboardComponent {
           )
         );
 
-        // Replace the 'fecha' field in the form with the UTC date
         this.citaForm.patchValue({ fecha: fechaHoraUTC });
+
+        this.citaForm.patchValue({ empleado: empleadoControl.value.id });
+        this.citaForm.patchValue({ servicio: servicioControl.value.id });
 
         const citaData = this.citaForm.value;
         this.http
@@ -132,7 +160,7 @@ export class ClientDashboardComponent {
           .subscribe({
             next: (response) => {
               console.log('Cita actualizada correctamente', response);
-              this.loadCitas(); // Actualiza la lista de citas después de la actualización
+              this.loadCitas();
               this.cancelEditMode();
             },
             error: (error) =>
@@ -149,13 +177,12 @@ export class ClientDashboardComponent {
   }
 
   eliminarCita(id: number) {
-    const url = `http://localhost:8000/citas/${id}`; // Asegúrate de que la URL coincida con tu API
+    const url = `http://localhost:8000/citas/${id}`;
     if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
-      // Opcional: Diálogo de confirmación
       this.http.delete(url).subscribe({
         next: (response) => {
           console.log('Cita eliminada correctamente', response);
-          this.loadCitas(); // Actualiza la lista de citas después de la eliminación
+          this.loadCitas();
         },
         error: (error) => console.error('Error al eliminar la cita', error),
       });
