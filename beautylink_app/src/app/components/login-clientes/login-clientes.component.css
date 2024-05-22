@@ -255,3 +255,7 @@ outline:none;
   .btn-login:hover{
     text-decoration: underline;
   }
+
+  .soycentro:hover{
+    border-bottom: 3px solid #D63484;
+  }

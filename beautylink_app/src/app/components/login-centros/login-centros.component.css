@@ -366,3 +366,7 @@ outline:none;
 .btn-login:hover{
   text-decoration: underline;
 }
+
+.soycliente:hover{
+  border-bottom: 3px solid #D63484;
+}
