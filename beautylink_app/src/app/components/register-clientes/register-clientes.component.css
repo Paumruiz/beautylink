@@ -90,3 +90,13 @@
     height: 54px;
     width: 100%;
 }
+
+.btn-register {
+  background-color: #ffffff;
+  color: #D63484;
+  border: 1px solid #D63484;
+}
+
+.btn-register:hover{
+  text-decoration: underline;
+}

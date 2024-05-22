@@ -359,3 +359,10 @@ outline:none;
 }
 
 
+.btn-register:hover{
+  text-decoration: underline;
+}
+
+.btn-login:hover{
+  text-decoration: underline;
+}

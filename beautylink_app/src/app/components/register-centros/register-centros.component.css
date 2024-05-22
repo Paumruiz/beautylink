@@ -86,3 +86,6 @@
     line-height: 1.5;
   }
   
+  .btn-register:hover{
+    text-decoration: underline;
+  }
