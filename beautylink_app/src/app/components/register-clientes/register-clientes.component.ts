@@ -60,7 +60,10 @@ export class RegisterClientesComponent {
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.registerCliente(this.registerForm.value).subscribe({
-        next: (response) => console.log('Registro exitoso', response),
+        next: (response) => {
+          console.log('Registro exitoso', response);
+          this.router.navigate(['/login-clientes']);
+        },
         error: (error) => console.error('Error en el registro', error),
       });
     }

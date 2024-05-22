@@ -92,9 +92,9 @@ export class CentrosCitasComponent {
 
   loadCitas(): void {
     if (this.citas) {
-      const idCliente = localStorage.getItem('idCliente');
-      if (idCliente !== null) {
-        this.centrosCitasService.getCitasById(idCliente).subscribe(
+      const idCentro = localStorage.getItem('idCentro');
+      if (idCentro !== null) {
+        this.centrosCitasService.getCitasById(idCentro).subscribe(
           (data) => {
             this.citas = data;
           },
